@@ -41,9 +41,9 @@ Partial Class SetTimerForm
         CbRestWav = New Button()
         LbWavPathWork = New Label()
         LbWavPathRest = New Label()
-        TimerWork = New Timer(components)
+        TimerAll = New Timer(components)
         TimerRest = New Timer(components)
-        OpenFileDialog = New OpenFileDialog()
+        OpenFileDialogLast = New OpenFileDialog()
         CbLastSec = New ComboBox()
         CbLastMin = New ComboBox()
         CbLastHour = New ComboBox()
@@ -52,7 +52,7 @@ Partial Class SetTimerForm
         CbLastRest = New CheckBox()
         CbSelectWavLast = New Button()
         LbPathLast = New Label()
-        TimerAll = New Timer(components)
+        CbPause = New Button()
         SuspendLayout()
         ' 
         ' LbWorkTitle
@@ -81,6 +81,7 @@ Partial Class SetTimerForm
         CbHourWork.Name = "CbHourWork"
         CbHourWork.Size = New Size(62, 23)
         CbHourWork.TabIndex = 110
+        CbHourWork.Text = "0"
         ' 
         ' CbHourRest
         ' 
@@ -90,6 +91,7 @@ Partial Class SetTimerForm
         CbHourRest.Name = "CbHourRest"
         CbHourRest.Size = New Size(62, 23)
         CbHourRest.TabIndex = 150
+        CbHourRest.Text = "0"
         ' 
         ' LbHourTitle
         ' 
@@ -108,6 +110,7 @@ Partial Class SetTimerForm
         CbMinWork.Name = "CbMinWork"
         CbMinWork.Size = New Size(62, 23)
         CbMinWork.TabIndex = 120
+        CbMinWork.Text = "0"
         ' 
         ' CbMinRest
         ' 
@@ -117,6 +120,7 @@ Partial Class SetTimerForm
         CbMinRest.Name = "CbMinRest"
         CbMinRest.Size = New Size(62, 23)
         CbMinRest.TabIndex = 160
+        CbMinRest.Text = "0"
         ' 
         ' CbSecWork
         ' 
@@ -126,6 +130,7 @@ Partial Class SetTimerForm
         CbSecWork.Name = "CbSecWork"
         CbSecWork.Size = New Size(62, 23)
         CbSecWork.TabIndex = 130
+        CbSecWork.Text = "10"
         ' 
         ' CbSecRest
         ' 
@@ -135,6 +140,7 @@ Partial Class SetTimerForm
         CbSecRest.Name = "CbSecRest"
         CbSecRest.Size = New Size(62, 23)
         CbSecRest.TabIndex = 170
+        CbSecRest.Text = "5"
         ' 
         ' LbMinTitle
         ' 
@@ -174,10 +180,10 @@ Partial Class SetTimerForm
         ' 
         ' CbClose
         ' 
-        CbClose.Location = New Point(176, 113)
+        CbClose.Location = New Point(252, 113)
         CbClose.Name = "CbClose"
         CbClose.Size = New Size(75, 23)
-        CbClose.TabIndex = 260
+        CbClose.TabIndex = 270
         CbClose.Text = "Close"
         CbClose.UseVisualStyleBackColor = True
         ' 
@@ -217,9 +223,10 @@ Partial Class SetTimerForm
         LbWavPathRest.TabIndex = 17
         LbWavPathRest.Text = "(non wav)"
         ' 
-        ' OpenFileDialog
+        ' OpenFileDialogLast
         ' 
-        OpenFileDialog.FileName = "OpenFileDialog1"
+        OpenFileDialogLast.FileName = "OpenFileDialog1"
+        OpenFileDialogLast.InitialDirectory = "%windir%\media\"
         ' 
         ' CbLastSec
         ' 
@@ -229,6 +236,7 @@ Partial Class SetTimerForm
         CbLastSec.Name = "CbLastSec"
         CbLastSec.Size = New Size(62, 23)
         CbLastSec.TabIndex = 210
+        CbLastSec.Text = "3"
         ' 
         ' CbLastMin
         ' 
@@ -238,6 +246,7 @@ Partial Class SetTimerForm
         CbLastMin.Name = "CbLastMin"
         CbLastMin.Size = New Size(62, 23)
         CbLastMin.TabIndex = 200
+        CbLastMin.Text = "0"
         ' 
         ' CbLastHour
         ' 
@@ -247,6 +256,7 @@ Partial Class SetTimerForm
         CbLastHour.Name = "CbLastHour"
         CbLastHour.Size = New Size(62, 23)
         CbLastHour.TabIndex = 190
+        CbLastHour.Text = "0"
         ' 
         ' LbLast
         ' 
@@ -295,11 +305,21 @@ Partial Class SetTimerForm
         LbPathLast.TabIndex = 262
         LbPathLast.Text = "(non wav)"
         ' 
+        ' CbPause
+        ' 
+        CbPause.Location = New Point(171, 113)
+        CbPause.Name = "CbPause"
+        CbPause.Size = New Size(75, 23)
+        CbPause.TabIndex = 260
+        CbPause.Text = "Pause"
+        CbPause.UseVisualStyleBackColor = True
+        ' 
         ' SetTimerForm
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(717, 148)
+        Controls.Add(CbPause)
         Controls.Add(LbPathLast)
         Controls.Add(CbSelectWavLast)
         Controls.Add(CbLastRest)
@@ -350,9 +370,9 @@ Partial Class SetTimerForm
     Friend WithEvents CbRestWav As Button
     Friend WithEvents LbWavPathWork As Label
     Friend WithEvents LbWavPathRest As Label
-    Friend WithEvents TimerWork As Timer
+    Friend WithEvents TimerAll As Timer
     Friend WithEvents TimerRest As Timer
-    Friend WithEvents OpenFileDialog As OpenFileDialog
+    Friend WithEvents OpenFileDialogLast As OpenFileDialog
     Friend WithEvents CbLastSec As ComboBox
     Friend WithEvents CbLastMin As ComboBox
     Friend WithEvents CbLastHour As ComboBox
@@ -361,6 +381,6 @@ Partial Class SetTimerForm
     Friend WithEvents CbLastRest As CheckBox
     Friend WithEvents CbSelectWavLast As Button
     Friend WithEvents LbPathLast As Label
-    Friend WithEvents TimerAll As Timer
+    Friend WithEvents CbPause As Button
 
 End Class
