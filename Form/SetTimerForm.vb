@@ -84,8 +84,9 @@ Public Class SetTimerForm
                 Me.CbMinWork.Text = tsW.Minutes.ToString()
                 Me.CbSecWork.Text = tsW.Seconds.ToString()
 
-                If Me.remainingWorkSeconds = Me.triggerSeconds Then
-                    My.Computer.Audio.Play(Me.LbWavPathlast.Text, AudioPlayMode.WaitToComplete)
+                If Me.remainingWorkSeconds = Me.triggerSeconds _
+                        And CbLastWork.Checked Then
+                    My.Computer.Audio.Play(Me.LbWavPathLast.Text, AudioPlayMode.WaitToComplete)
                     Debug.WriteLine("Workアラート: 残り " & Me.remainingWorkSeconds & "秒")
                 End If
 
@@ -105,7 +106,8 @@ Public Class SetTimerForm
                 Me.CbMinRest.Text = tsR.Minutes.ToString()
                 Me.CbSecRest.Text = tsR.Seconds.ToString()
 
-                If Me.remainingRestSeconds = Me.triggerSeconds Then
+                If Me.remainingRestSeconds = Me.triggerSeconds _
+                        And CbLastRest.Checked Then
                     My.Computer.Audio.Play(Me.LbWavPathLast.Text, AudioPlayMode.WaitToComplete)
                     Debug.WriteLine("Restアラート: 残り " & Me.remainingRestSeconds & "秒")
                 End If
@@ -147,4 +149,27 @@ Public Class SetTimerForm
 
 
     End Sub
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Try
+            ' フォームがキーイベントを先に受け取るようにする
+            Me.KeyPreview = True
+        Catch ex As Exception
+            Debug.WriteLine(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        Try
+            If e.KeyCode = Keys.Escape Then
+                ' アプリケーションを終了
+                Application.Exit()
+                ' または Me.Close() でもOK
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex.Message)
+        End Try
+    End Sub
+
+
 End Class

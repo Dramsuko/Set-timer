@@ -82,7 +82,7 @@ Partial Class SetTimerForm
         CbHourWork.Name = "CbHourWork"
         CbHourWork.Size = New Size(62, 23)
         CbHourWork.TabIndex = 110
-        CbHourWork.Text = "03"
+        CbHourWork.Text = "0"
         ' 
         ' CbHourRest
         ' 
@@ -111,7 +111,7 @@ Partial Class SetTimerForm
         CbMinWork.Name = "CbMinWork"
         CbMinWork.Size = New Size(62, 23)
         CbMinWork.TabIndex = 120
-        CbMinWork.Text = "02"
+        CbMinWork.Text = "20"
         ' 
         ' CbMinRest
         ' 
@@ -131,7 +131,7 @@ Partial Class SetTimerForm
         CbSecWork.Name = "CbSecWork"
         CbSecWork.Size = New Size(62, 23)
         CbSecWork.TabIndex = 130
-        CbSecWork.Text = "10"
+        CbSecWork.Text = "0"
         ' 
         ' CbSecRest
         ' 
@@ -141,7 +141,7 @@ Partial Class SetTimerForm
         CbSecRest.Name = "CbSecRest"
         CbSecRest.Size = New Size(62, 23)
         CbSecRest.TabIndex = 170
-        CbSecRest.Text = "5"
+        CbSecRest.Text = "30"
         ' 
         ' LbMinTitle
         ' 
@@ -240,7 +240,7 @@ Partial Class SetTimerForm
         CbSecLast.Name = "CbSecLast"
         CbSecLast.Size = New Size(62, 23)
         CbSecLast.TabIndex = 210
-        CbSecLast.Text = "3"
+        CbSecLast.Text = "10"
         ' 
         ' CbMinLast
         ' 
@@ -284,6 +284,8 @@ Partial Class SetTimerForm
         ' CbLastRest
         ' 
         CbLastRest.AutoSize = True
+        CbLastRest.Checked = True
+        CbLastRest.CheckState = CheckState.Checked
         CbLastRest.Location = New Point(317, 88)
         CbLastRest.Name = "CbLastRest"
         CbLastRest.Size = New Size(48, 19)
