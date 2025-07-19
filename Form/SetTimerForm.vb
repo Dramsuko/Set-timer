@@ -18,6 +18,8 @@ Public Class SetTimerForm
     ' アラート閾値（秒）
     Private triggerSeconds As Integer
 
+    Private initialButtonColor As Color
+
 
     Private Sub CbClose_Click(sender As Object, e As EventArgs) Handles CbClose.Click
         Application.Exit()
@@ -27,6 +29,9 @@ Public Class SetTimerForm
 
     Private Sub CbStart_Click(sender As Object, e As EventArgs) Handles CbStart.Click
         Try
+            initialButtonColor = Me.CbStart.BackColor
+            Me.CbStart.BackColor = Color.LightGreen
+
             ' 入力から秒数を算出して初期値＆残り時間へセット
             Me.initialWorkSeconds = CInt(CbHourWork.Text) * 3600 _
                            + CInt(CbMinWork.Text) * 60 _
@@ -40,16 +45,25 @@ Public Class SetTimerForm
                        + CInt(CbMinLast.Text) * 60 _
                        + CInt(CbSecLast.Text)
 
+
             If Me.initialWorkSeconds <= 0 Then
                 MessageBox.Show("0より多くの値を入力して下さい", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Exit Sub
             End If
 
-            Me.TimerAll.Interval = 1000 ' 1秒ごとに発火
-            AddHandler Me.TimerAll.Tick, AddressOf TimerAll_Tick
 
-            Me.TimerAll.Start()
-            Debug.WriteLine("Start")
+            ' フェーズをWorkからスタート、残り時間を初期値でセット
+            Me.isWorkPhase = True
+            Me.remainingWorkSeconds = initialWorkSeconds
+            Me.remainingRestSeconds = initialRestSeconds
+
+
+            ' タイマー起動
+            TimerAll.Interval = 1000
+            AddHandler Me.TimerAll.Tick, AddressOf Me.TimerAll_Tick
+            TimerAll.Start()
+            Debug.WriteLine("タイマー開始: Workフェーズ")
+
 
         Catch ex As Exception
             Debug.WriteLine(ex.Message)
@@ -61,32 +75,47 @@ Public Class SetTimerForm
     Private Sub TimerAll_Tick(sender As Object, e As EventArgs)
         Try
 
-            remainingSecondsWork -= 1
+            If Me.isWorkPhase Then
+                ' Work フェーズ
+                Me.remainingWorkSeconds -= 1
+                Dim tsW As TimeSpan = TimeSpan.FromSeconds(Me.remainingWorkSeconds)
 
+                Me.CbHourWork.Text = tsW.Hours.ToString()
+                Me.CbMinWork.Text = tsW.Minutes.ToString()
+                Me.CbSecWork.Text = tsW.Seconds.ToString()
 
-            ' TimeSpan で時・分・秒を取得
-            Dim ts As TimeSpan = TimeSpan.FromSeconds(remainingSecondsWork)
+                If Me.remainingWorkSeconds = Me.triggerSeconds Then
+                    My.Computer.Audio.Play(Me.LbWavPathlast.Text, AudioPlayMode.WaitToComplete)
+                    Debug.WriteLine("Workアラート: 残り " & Me.remainingWorkSeconds & "秒")
+                End If
 
-            ' 各コントロールにセット
-            CbHourWork.Text = ts.Hours.ToString()
-            CbMinWork.Text = ts.Minutes.ToString()
-            CbSecWork.Text = ts.Seconds.ToString()
+                If Me.remainingWorkSeconds <= 0 Then
+                    My.Computer.Audio.Play(Me.LbWavPathWork.Text, AudioPlayMode.WaitToComplete)
+                    Me.isWorkPhase = False
+                    Me.remainingRestSeconds = Me.initialRestSeconds
+                    Debug.WriteLine("Work終了 → Restフェーズへ")
+                End If
 
+            Else
+                ' Rest フェーズ
+                Me.remainingRestSeconds -= 1
+                Dim tsR As TimeSpan = TimeSpan.FromSeconds(Me.remainingRestSeconds)
 
+                Me.CbHourRest.Text = tsR.Hours.ToString()
+                Me.CbMinRest.Text = tsR.Minutes.ToString()
+                Me.CbSecRest.Text = tsR.Seconds.ToString()
 
-            Dim triggerSeconds As Integer = CInt(Me.CbHourLast.Text) * 3600 _
-                               + CInt(Me.CbMinLast.Text) * 60 _
-                               + CInt(Me.CbSecLast.Text)
+                If Me.remainingRestSeconds = Me.triggerSeconds Then
+                    My.Computer.Audio.Play(Me.LbWavPathLast.Text, AudioPlayMode.WaitToComplete)
+                    Debug.WriteLine("Restアラート: 残り " & Me.remainingRestSeconds & "秒")
+                End If
 
-            If remainingSecondsWork = triggerSeconds Then
-                My.Computer.Audio.Play(Me.LbWavPathRest.Text, AudioPlayMode.WaitToComplete)
-                Debug.WriteLine("残りWorkLast " & remainingSecondsWork & "秒")
-            End If
-
-
-            If remainingSecondsWork <= 0 Then
-                Me.TimerAll.Stop()
-                Debug.WriteLine("終了")
+                If Me.remainingRestSeconds <= 0 Then
+                    My.Computer.Audio.Play(Me.LbWavPathRest.Text, AudioPlayMode.WaitToComplete)
+                    Me.isWorkPhase = True
+                    Me.remainingWorkSeconds = Me.initialWorkSeconds
+                    Debug.WriteLine("Rest終了 → Workフェーズへ")
+                End If
             End If
 
         Catch ex As Exception
@@ -96,6 +125,7 @@ Public Class SetTimerForm
 
     Private Sub CbStop_Click(sender As Object, e As EventArgs) Handles CbStop.Click
         Try
+            Me.CbStart.BackColor = initialButtonColor
             Me.TimerAll.Stop()
             Debug.WriteLine("終了:StopButton")
         Catch ex As Exception
@@ -109,7 +139,7 @@ Public Class SetTimerForm
 
         Try
             If Me.OpenFileDialogLast.ShowDialog() = DialogResult.OK Then
-                Me.LbPathLast.Text = OpenFileDialogLast.FileName
+                Me.LbWavPathLast.Text = OpenFileDialogLast.FileName
             End If
         Catch ex As Exception
             Debug.WriteLine(ex.Message)

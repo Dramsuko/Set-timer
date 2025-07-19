@@ -51,7 +51,7 @@ Partial Class SetTimerForm
         CbLastWork = New CheckBox()
         CbLastRest = New CheckBox()
         CbSelectWavLast = New Button()
-        LbPathLast = New Label()
+        LbWavPathLast = New Label()
         CbPause = New Button()
         TimerWork = New Timer(components)
         SuspendLayout()
@@ -163,12 +163,13 @@ Partial Class SetTimerForm
         ' 
         ' CbStart
         ' 
+        CbStart.BackColor = SystemColors.ControlLightLight
         CbStart.Location = New Point(12, 114)
         CbStart.Name = "CbStart"
         CbStart.Size = New Size(75, 23)
         CbStart.TabIndex = 240
         CbStart.Text = "Start"
-        CbStart.UseVisualStyleBackColor = True
+        CbStart.UseVisualStyleBackColor = False
         ' 
         ' CbStop
         ' 
@@ -299,14 +300,14 @@ Partial Class SetTimerForm
         CbSelectWavLast.Text = "Select wav(last)"
         CbSelectWavLast.UseVisualStyleBackColor = True
         ' 
-        ' LbPathLast
+        ' LbWavPathLast
         ' 
-        LbPathLast.AutoSize = True
-        LbPathLast.Location = New Point(497, 92)
-        LbPathLast.Name = "LbPathLast"
-        LbPathLast.Size = New Size(255, 15)
-        LbPathLast.TabIndex = 262
-        LbPathLast.Text = "C:\Windows\Media\Windows Foreground.wav"
+        LbWavPathLast.AutoSize = True
+        LbWavPathLast.Location = New Point(497, 92)
+        LbWavPathLast.Name = "LbWavPathLast"
+        LbWavPathLast.Size = New Size(255, 15)
+        LbWavPathLast.TabIndex = 262
+        LbWavPathLast.Text = "C:\Windows\Media\Windows Foreground.wav"
         ' 
         ' CbPause
         ' 
@@ -323,7 +324,7 @@ Partial Class SetTimerForm
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(795, 148)
         Controls.Add(CbPause)
-        Controls.Add(LbPathLast)
+        Controls.Add(LbWavPathLast)
         Controls.Add(CbSelectWavLast)
         Controls.Add(CbLastRest)
         Controls.Add(CbLastWork)
@@ -383,7 +384,7 @@ Partial Class SetTimerForm
     Friend WithEvents CbLastWork As CheckBox
     Friend WithEvents CbLastRest As CheckBox
     Friend WithEvents CbSelectWavLast As Button
-    Friend WithEvents LbPathLast As Label
+    Friend WithEvents LbWavPathLast As Label
     Friend WithEvents CbPause As Button
     Friend WithEvents TimerWork As Timer
 
