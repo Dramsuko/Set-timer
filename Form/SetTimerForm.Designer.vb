@@ -44,15 +44,16 @@ Partial Class SetTimerForm
         TimerAll = New Timer(components)
         TimerRest = New Timer(components)
         OpenFileDialogLast = New OpenFileDialog()
-        CbLastSec = New ComboBox()
-        CbLastMin = New ComboBox()
-        CbLastHour = New ComboBox()
+        CbSecLast = New ComboBox()
+        CbMinLast = New ComboBox()
+        CbHourLast = New ComboBox()
         LbLast = New Label()
         CbLastWork = New CheckBox()
         CbLastRest = New CheckBox()
         CbSelectWavLast = New Button()
         LbPathLast = New Label()
         CbPause = New Button()
+        TimerWork = New Timer(components)
         SuspendLayout()
         ' 
         ' LbWorkTitle
@@ -76,12 +77,12 @@ Partial Class SetTimerForm
         ' CbHourWork
         ' 
         CbHourWork.FormattingEnabled = True
-        CbHourWork.Items.AddRange(New Object() {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"})
+        CbHourWork.Items.AddRange(New Object() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"})
         CbHourWork.Location = New Point(53, 27)
         CbHourWork.Name = "CbHourWork"
         CbHourWork.Size = New Size(62, 23)
         CbHourWork.TabIndex = 110
-        CbHourWork.Text = "0"
+        CbHourWork.Text = "03"
         ' 
         ' CbHourRest
         ' 
@@ -105,12 +106,12 @@ Partial Class SetTimerForm
         ' CbMinWork
         ' 
         CbMinWork.FormattingEnabled = True
-        CbMinWork.Items.AddRange(New Object() {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
+        CbMinWork.Items.AddRange(New Object() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
         CbMinWork.Location = New Point(121, 27)
         CbMinWork.Name = "CbMinWork"
         CbMinWork.Size = New Size(62, 23)
         CbMinWork.TabIndex = 120
-        CbMinWork.Text = "0"
+        CbMinWork.Text = "02"
         ' 
         ' CbMinRest
         ' 
@@ -210,53 +211,55 @@ Partial Class SetTimerForm
         LbWavPathWork.AutoSize = True
         LbWavPathWork.Location = New Point(383, 31)
         LbWavPathWork.Name = "LbWavPathWork"
-        LbWavPathWork.Size = New Size(60, 15)
+        LbWavPathWork.Size = New Size(184, 15)
         LbWavPathWork.TabIndex = 16
-        LbWavPathWork.Text = "(non wav)"
+        LbWavPathWork.Text = "C:\Windows\Media\Alarm05.wav"
         ' 
         ' LbWavPathRest
         ' 
         LbWavPathRest.AutoSize = True
         LbWavPathRest.Location = New Point(383, 60)
         LbWavPathRest.Name = "LbWavPathRest"
-        LbWavPathRest.Size = New Size(60, 15)
+        LbWavPathRest.Size = New Size(184, 15)
         LbWavPathRest.TabIndex = 17
-        LbWavPathRest.Text = "(non wav)"
+        LbWavPathRest.Text = "C:\Windows\Media\Alarm02.wav"
         ' 
         ' OpenFileDialogLast
         ' 
         OpenFileDialogLast.FileName = "OpenFileDialog1"
-        OpenFileDialogLast.InitialDirectory = "%windir%\media\"
+        OpenFileDialogLast.Filter = "wavファイル (*.wav)|*.wav"
+        OpenFileDialogLast.InitialDirectory = "c:\windows\media\"
+        OpenFileDialogLast.Title = "ラスト？秒で鳴らすWAVファイルを選択して下さい"
         ' 
-        ' CbLastSec
+        ' CbSecLast
         ' 
-        CbLastSec.FormattingEnabled = True
-        CbLastSec.Items.AddRange(New Object() {"0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"})
-        CbLastSec.Location = New Point(189, 85)
-        CbLastSec.Name = "CbLastSec"
-        CbLastSec.Size = New Size(62, 23)
-        CbLastSec.TabIndex = 210
-        CbLastSec.Text = "3"
+        CbSecLast.FormattingEnabled = True
+        CbSecLast.Items.AddRange(New Object() {"0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"})
+        CbSecLast.Location = New Point(189, 85)
+        CbSecLast.Name = "CbSecLast"
+        CbSecLast.Size = New Size(62, 23)
+        CbSecLast.TabIndex = 210
+        CbSecLast.Text = "3"
         ' 
-        ' CbLastMin
+        ' CbMinLast
         ' 
-        CbLastMin.FormattingEnabled = True
-        CbLastMin.Items.AddRange(New Object() {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
-        CbLastMin.Location = New Point(121, 85)
-        CbLastMin.Name = "CbLastMin"
-        CbLastMin.Size = New Size(62, 23)
-        CbLastMin.TabIndex = 200
-        CbLastMin.Text = "0"
+        CbMinLast.FormattingEnabled = True
+        CbMinLast.Items.AddRange(New Object() {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
+        CbMinLast.Location = New Point(121, 85)
+        CbMinLast.Name = "CbMinLast"
+        CbMinLast.Size = New Size(62, 23)
+        CbMinLast.TabIndex = 200
+        CbMinLast.Text = "0"
         ' 
-        ' CbLastHour
+        ' CbHourLast
         ' 
-        CbLastHour.FormattingEnabled = True
-        CbLastHour.Items.AddRange(New Object() {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"})
-        CbLastHour.Location = New Point(53, 85)
-        CbLastHour.Name = "CbLastHour"
-        CbLastHour.Size = New Size(62, 23)
-        CbLastHour.TabIndex = 190
-        CbLastHour.Text = "0"
+        CbHourLast.FormattingEnabled = True
+        CbHourLast.Items.AddRange(New Object() {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"})
+        CbHourLast.Location = New Point(53, 85)
+        CbHourLast.Name = "CbHourLast"
+        CbHourLast.Size = New Size(62, 23)
+        CbHourLast.TabIndex = 190
+        CbHourLast.Text = "0"
         ' 
         ' LbLast
         ' 
@@ -301,9 +304,9 @@ Partial Class SetTimerForm
         LbPathLast.AutoSize = True
         LbPathLast.Location = New Point(497, 92)
         LbPathLast.Name = "LbPathLast"
-        LbPathLast.Size = New Size(60, 15)
+        LbPathLast.Size = New Size(255, 15)
         LbPathLast.TabIndex = 262
-        LbPathLast.Text = "(non wav)"
+        LbPathLast.Text = "C:\Windows\Media\Windows Foreground.wav"
         ' 
         ' CbPause
         ' 
@@ -316,17 +319,17 @@ Partial Class SetTimerForm
         ' 
         ' SetTimerForm
         ' 
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(717, 148)
+        ClientSize = New Size(795, 148)
         Controls.Add(CbPause)
         Controls.Add(LbPathLast)
         Controls.Add(CbSelectWavLast)
         Controls.Add(CbLastRest)
         Controls.Add(CbLastWork)
-        Controls.Add(CbLastSec)
-        Controls.Add(CbLastMin)
-        Controls.Add(CbLastHour)
+        Controls.Add(CbSecLast)
+        Controls.Add(CbMinLast)
+        Controls.Add(CbHourLast)
         Controls.Add(LbLast)
         Controls.Add(LbWavPathRest)
         Controls.Add(LbWavPathWork)
@@ -373,14 +376,15 @@ Partial Class SetTimerForm
     Friend WithEvents TimerAll As Timer
     Friend WithEvents TimerRest As Timer
     Friend WithEvents OpenFileDialogLast As OpenFileDialog
-    Friend WithEvents CbLastSec As ComboBox
-    Friend WithEvents CbLastMin As ComboBox
-    Friend WithEvents CbLastHour As ComboBox
+    Friend WithEvents CbSecLast As ComboBox
+    Friend WithEvents CbMinLast As ComboBox
+    Friend WithEvents CbHourLast As ComboBox
     Friend WithEvents LbLast As Label
     Friend WithEvents CbLastWork As CheckBox
     Friend WithEvents CbLastRest As CheckBox
     Friend WithEvents CbSelectWavLast As Button
     Friend WithEvents LbPathLast As Label
     Friend WithEvents CbPause As Button
+    Friend WithEvents TimerWork As Timer
 
 End Class

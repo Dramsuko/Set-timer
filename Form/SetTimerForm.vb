@@ -1,9 +1,22 @@
-﻿Public Class SetTimerForm
+﻿Option Explicit On
 
-    Private remainingSecondsWork As Integer = 0
-    'Private remainingSecondsRestk As Integer = 0
-    'Private remainingSecondsLast As Integer = 0
-    Private remainingSecondsAll As Integer = 0
+Imports System.Security.Cryptography
+
+Public Class SetTimerForm
+
+    ' フェーズ制御
+    Private isWorkPhase As Boolean = True
+
+    ' 初期値保持用
+    Private initialWorkSeconds As Integer
+    Private initialRestSeconds As Integer
+
+    ' 残り時間
+    Private remainingWorkSeconds As Integer
+    Private remainingRestSeconds As Integer
+
+    ' アラート閾値（秒）
+    Private triggerSeconds As Integer
 
 
     Private Sub CbClose_Click(sender As Object, e As EventArgs) Handles CbClose.Click
@@ -14,16 +27,25 @@
 
     Private Sub CbStart_Click(sender As Object, e As EventArgs) Handles CbStart.Click
         Try
+            ' 入力から秒数を算出して初期値＆残り時間へセット
+            Me.initialWorkSeconds = CInt(CbHourWork.Text) * 3600 _
+                           + CInt(CbMinWork.Text) * 60 _
+                           + CInt(CbSecWork.Text)
 
-            Dim timerValueSec As Integer = CInt(Me.CbHourWork.Text * 3600 + Me.CbMinWork.Text * 60 + Me.CbSecWork.Text)
-            If timerValueSec <= 0 Then
-                MessageBox.Show("0以上を入力して下さい", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Me.initialRestSeconds = CInt(CbHourRest.Text) * 3600 _
+                           + CInt(CbMinRest.Text) * 60 _
+                           + CInt(CbSecRest.Text)
+
+            Me.triggerSeconds = CInt(CbHourLast.Text) * 3600 _
+                       + CInt(CbMinLast.Text) * 60 _
+                       + CInt(CbSecLast.Text)
+
+            If Me.initialWorkSeconds <= 0 Then
+                MessageBox.Show("0より多くの値を入力して下さい", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Exit Sub
             End If
 
             Me.TimerAll.Interval = 1000 ' 1秒ごとに発火
-            remainingSecondsWork = timerValueSec * 1000
-            'remainingSecondsAll = timerValueSec * 1000 - ((CInt(Me.CbLastHour.Text) + CInt(Me.CbLastMin.Text) + CInt(Me.CbLastSec.Text)) * 1000)
             AddHandler Me.TimerAll.Tick, AddressOf TimerAll_Tick
 
             Me.TimerAll.Start()
@@ -38,15 +60,29 @@
 
     Private Sub TimerAll_Tick(sender As Object, e As EventArgs)
         Try
-            ' ここに繰り返したい処理を書く
-            remainingSecondsWork -= 1 * 1000
-            Debug.WriteLine("残りWork " & remainingSecondsWork & "秒")
 
-            If remainingSecondsWork <= (CInt(Me.CbLastHour.Text) * 3600 + CInt(Me.CbLastMin.Text) * 60 + CInt(Me.CbLastSec.Text)) * 1000 Then
-                'MessageBox.Show("残り5秒です！")
-                'My.Computer.Audio.Play("C:\Sounds\alert.wav", AudioPlayMode.WaitToComplete)
+            remainingSecondsWork -= 1
+
+
+            ' TimeSpan で時・分・秒を取得
+            Dim ts As TimeSpan = TimeSpan.FromSeconds(remainingSecondsWork)
+
+            ' 各コントロールにセット
+            CbHourWork.Text = ts.Hours.ToString()
+            CbMinWork.Text = ts.Minutes.ToString()
+            CbSecWork.Text = ts.Seconds.ToString()
+
+
+
+            Dim triggerSeconds As Integer = CInt(Me.CbHourLast.Text) * 3600 _
+                               + CInt(Me.CbMinLast.Text) * 60 _
+                               + CInt(Me.CbSecLast.Text)
+
+            If remainingSecondsWork = triggerSeconds Then
+                My.Computer.Audio.Play(Me.LbWavPathRest.Text, AudioPlayMode.WaitToComplete)
                 Debug.WriteLine("残りWorkLast " & remainingSecondsWork & "秒")
             End If
+
 
             If remainingSecondsWork <= 0 Then
                 Me.TimerAll.Stop()
@@ -72,7 +108,9 @@
     Private Sub CbSelectWavLast_Click(sender As Object, e As EventArgs) Handles CbSelectWavLast.Click
 
         Try
-
+            If Me.OpenFileDialogLast.ShowDialog() = DialogResult.OK Then
+                Me.LbPathLast.Text = OpenFileDialogLast.FileName
+            End If
         Catch ex As Exception
             Debug.WriteLine(ex.Message)
         End Try
