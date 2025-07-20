@@ -31,7 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Class\" />
     <Folder Include="Module\" />
   </ItemGroup>
 
