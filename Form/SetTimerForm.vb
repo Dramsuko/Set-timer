@@ -131,6 +131,21 @@ Partial Class SetTimerForm
     Private Sub CbStop_Click(sender As Object, e As EventArgs) Handles CbStop.Click
         Me.CbStart.BackColor = initialButtonColor
         Me.TimerAll.Stop()
+
+        remainingWorkSeconds = initialWorkSeconds
+        Dim tsW = TimeSpan.FromSeconds(remainingWorkSeconds)
+        CbHourWork.Text = tsW.Hours.ToString()
+        CbMinWork.Text = tsW.Minutes.ToString()
+        CbSecWork.Text = tsW.Seconds.ToString()
+
+
+        remainingRestSeconds = initialRestSeconds
+        Dim tsR = TimeSpan.FromSeconds(remainingRestSeconds)
+        CbHourRest.Text = tsR.Hours.ToString()
+        CbMinRest.Text = tsR.Minutes.ToString()
+        CbSecRest.Text = tsR.Seconds.ToString()
+
+
         Debug.WriteLine("停止")
     End Sub
 

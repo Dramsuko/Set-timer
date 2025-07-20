@@ -110,7 +110,7 @@ Partial Class SetTimerForm
         ' CbMinWork
         ' 
         CbMinWork.FormattingEnabled = True
-        CbMinWork.Items.AddRange(New Object() {"00", "01", "02", "...", "59"})
+        CbMinWork.Items.AddRange(New Object() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
         CbMinWork.Location = New Point(121, 27)
         CbMinWork.Name = "CbMinWork"
         CbMinWork.Size = New Size(62, 23)
@@ -120,7 +120,7 @@ Partial Class SetTimerForm
         ' CbMinRest
         ' 
         CbMinRest.FormattingEnabled = True
-        CbMinRest.Items.AddRange(New Object() {"01", "02", "...", "59"})
+        CbMinRest.Items.AddRange(New Object() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
         CbMinRest.Location = New Point(121, 56)
         CbMinRest.Name = "CbMinRest"
         CbMinRest.Size = New Size(62, 23)
@@ -252,7 +252,7 @@ Partial Class SetTimerForm
         ' CbMinLast
         ' 
         CbMinLast.FormattingEnabled = True
-        CbMinLast.Items.AddRange(New Object() {"01", "...", "59"})
+        CbMinLast.Items.AddRange(New Object() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"})
         CbMinLast.Location = New Point(121, 85)
         CbMinLast.Name = "CbMinLast"
         CbMinLast.Size = New Size(62, 23)
@@ -351,7 +351,7 @@ Partial Class SetTimerForm
         ' 
         ' SetTimerForm
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(795, 148)
         Controls.Add(CbPause)
