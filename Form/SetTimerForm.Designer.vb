@@ -22,369 +22,369 @@ Partial Class SetTimerForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Me.LbWorkTitle = New System.Windows.Forms.Label()
-        Me.LbRestTitle = New System.Windows.Forms.Label()
-        Me.CbHourWork = New System.Windows.Forms.ComboBox()
-        Me.CbHourRest = New System.Windows.Forms.ComboBox()
-        Me.LbHourTitle = New System.Windows.Forms.Label()
-        Me.CbMinWork = New System.Windows.Forms.ComboBox()
-        Me.CbMinRest = New System.Windows.Forms.ComboBox()
-        Me.CbSecWork = New System.Windows.Forms.ComboBox()
-        Me.CbSecRest = New System.Windows.Forms.ComboBox()
-        Me.LbMinTitle = New System.Windows.Forms.Label()
-        Me.LbSecTitle = New System.Windows.Forms.Label()
-        Me.CbStart = New System.Windows.Forms.Button()
-        Me.CbStop = New System.Windows.Forms.Button()
-        Me.CbClose = New System.Windows.Forms.Button()
-        Me.CbWorkWav = New System.Windows.Forms.Button()
-        Me.CbRestWav = New System.Windows.Forms.Button()
-        Me.LbWavPathWork = New System.Windows.Forms.Label()
-        Me.LbWavPathRest = New System.Windows.Forms.Label()
-        Me.TimerAll = New System.Windows.Forms.Timer(Me.components)
-        Me.TimerRest = New System.Windows.Forms.Timer(Me.components)
-        Me.TimerWork = New System.Windows.Forms.Timer(Me.components)
-        Me.OpenFileDialogLast = New System.Windows.Forms.OpenFileDialog()
-        Me.CbSecLast = New System.Windows.Forms.ComboBox()
-        Me.CbMinLast = New System.Windows.Forms.ComboBox()
-        Me.CbHourLast = New System.Windows.Forms.ComboBox()
-        Me.LbLast = New System.Windows.Forms.Label()
-        Me.CbLastWork = New System.Windows.Forms.CheckBox()
-        Me.CbLastRest = New System.Windows.Forms.CheckBox()
-        Me.CbSelectWavLast = New System.Windows.Forms.Button()
-        Me.LbWavPathLast = New System.Windows.Forms.Label()
-        Me.CbPause = New System.Windows.Forms.Button()
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.OpenFileDialog2 = New System.Windows.Forms.OpenFileDialog()
-        Me.OpenFileDialogWork = New System.Windows.Forms.OpenFileDialog()
-        Me.OpenFileDialogRest = New System.Windows.Forms.OpenFileDialog()
-        Me.SuspendLayout()
-        '
-        'LbWorkTitle
-        '
-        Me.LbWorkTitle.AutoSize = True
-        Me.LbWorkTitle.Location = New System.Drawing.Point(12, 30)
-        Me.LbWorkTitle.Name = "LbWorkTitle"
-        Me.LbWorkTitle.Size = New System.Drawing.Size(35, 15)
-        Me.LbWorkTitle.TabIndex = 0
-        Me.LbWorkTitle.Text = "Work"
-        '
-        'LbRestTitle
-        '
-        Me.LbRestTitle.AutoSize = True
-        Me.LbRestTitle.Location = New System.Drawing.Point(12, 59)
-        Me.LbRestTitle.Name = "LbRestTitle"
-        Me.LbRestTitle.Size = New System.Drawing.Size(29, 15)
-        Me.LbRestTitle.TabIndex = 1
-        Me.LbRestTitle.Text = "Rest"
-        '
-        'CbHourWork
-        '
-        Me.CbHourWork.FormattingEnabled = True
-        Me.CbHourWork.Items.AddRange(New Object() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"})
-        Me.CbHourWork.Location = New System.Drawing.Point(53, 27)
-        Me.CbHourWork.Name = "CbHourWork"
-        Me.CbHourWork.Size = New System.Drawing.Size(62, 23)
-        Me.CbHourWork.TabIndex = 110
-        Me.CbHourWork.Text = "0"
-        '
-        'CbHourRest
-        '
-        Me.CbHourRest.FormattingEnabled = True
-        Me.CbHourRest.Items.AddRange(New Object() {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"})
-        Me.CbHourRest.Location = New System.Drawing.Point(53, 56)
-        Me.CbHourRest.Name = "CbHourRest"
-        Me.CbHourRest.Size = New System.Drawing.Size(62, 23)
-        Me.CbHourRest.TabIndex = 150
-        Me.CbHourRest.Text = "0"
-        '
-        'LbHourTitle
-        '
-        Me.LbHourTitle.AutoSize = True
-        Me.LbHourTitle.Location = New System.Drawing.Point(63, 9)
-        Me.LbHourTitle.Name = "LbHourTitle"
-        Me.LbHourTitle.Size = New System.Drawing.Size(34, 15)
-        Me.LbHourTitle.TabIndex = 4
-        Me.LbHourTitle.Text = "Hour"
-        '
-        'CbMinWork
-        '
-        Me.CbMinWork.FormattingEnabled = True
-        Me.CbMinWork.Items.AddRange(New Object() {"00", "01", "02", "...", "59"})
-        Me.CbMinWork.Location = New System.Drawing.Point(121, 27)
-        Me.CbMinWork.Name = "CbMinWork"
-        Me.CbMinWork.Size = New System.Drawing.Size(62, 23)
-        Me.CbMinWork.TabIndex = 120
-        Me.CbMinWork.Text = "20"
-        '
-        'CbMinRest
-        '
-        Me.CbMinRest.FormattingEnabled = True
-        Me.CbMinRest.Items.AddRange(New Object() {"01", "02", "...", "59"})
-        Me.CbMinRest.Location = New System.Drawing.Point(121, 56)
-        Me.CbMinRest.Name = "CbMinRest"
-        Me.CbMinRest.Size = New System.Drawing.Size(62, 23)
-        Me.CbMinRest.TabIndex = 160
-        Me.CbMinRest.Text = "0"
-        '
-        'CbSecWork
-        '
-        Me.CbSecWork.FormattingEnabled = True
-        Me.CbSecWork.Items.AddRange(New Object() {"0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"})
-        Me.CbSecWork.Location = New System.Drawing.Point(189, 27)
-        Me.CbSecWork.Name = "CbSecWork"
-        Me.CbSecWork.Size = New System.Drawing.Size(62, 23)
-        Me.CbSecWork.TabIndex = 130
-        Me.CbSecWork.Text = "0"
-        '
-        'CbSecRest
-        '
-        Me.CbSecRest.FormattingEnabled = True
-        Me.CbSecRest.Items.AddRange(New Object() {"0", "5", "10", "...", "55"})
-        Me.CbSecRest.Location = New System.Drawing.Point(189, 56)
-        Me.CbSecRest.Name = "CbSecRest"
-        Me.CbSecRest.Size = New System.Drawing.Size(62, 23)
-        Me.CbSecRest.TabIndex = 170
-        Me.CbSecRest.Text = "30"
-        '
-        'LbMinTitle
-        '
-        Me.LbMinTitle.AutoSize = True
-        Me.LbMinTitle.Location = New System.Drawing.Point(137, 9)
-        Me.LbMinTitle.Name = "LbMinTitle"
-        Me.LbMinTitle.Size = New System.Drawing.Size(28, 15)
-        Me.LbMinTitle.TabIndex = 9
-        Me.LbMinTitle.Text = "Min"
-        '
-        'LbSecTitle
-        '
-        Me.LbSecTitle.AutoSize = True
-        Me.LbSecTitle.Location = New System.Drawing.Point(204, 9)
-        Me.LbSecTitle.Name = "LbSecTitle"
-        Me.LbSecTitle.Size = New System.Drawing.Size(25, 15)
-        Me.LbSecTitle.TabIndex = 10
-        Me.LbSecTitle.Text = "Sec"
-        '
-        'CbStart
-        '
-        Me.CbStart.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.CbStart.Location = New System.Drawing.Point(12, 114)
-        Me.CbStart.Name = "CbStart"
-        Me.CbStart.Size = New System.Drawing.Size(75, 23)
-        Me.CbStart.TabIndex = 240
-        Me.CbStart.Text = "Start"
-        Me.CbStart.UseVisualStyleBackColor = False
-        '
-        'CbStop
-        '
-        Me.CbStop.Location = New System.Drawing.Point(90, 114)
-        Me.CbStop.Name = "CbStop"
-        Me.CbStop.Size = New System.Drawing.Size(75, 23)
-        Me.CbStop.TabIndex = 250
-        Me.CbStop.Text = "Stop"
-        Me.CbStop.UseVisualStyleBackColor = True
-        '
-        'CbClose
-        '
-        Me.CbClose.Location = New System.Drawing.Point(252, 113)
-        Me.CbClose.Name = "CbClose"
-        Me.CbClose.Size = New System.Drawing.Size(75, 23)
-        Me.CbClose.TabIndex = 270
-        Me.CbClose.Text = "Close"
-        Me.CbClose.UseVisualStyleBackColor = True
-        '
-        'CbWorkWav
-        '
-        Me.CbWorkWav.Location = New System.Drawing.Point(257, 27)
-        Me.CbWorkWav.Name = "CbWorkWav"
-        Me.CbWorkWav.Size = New System.Drawing.Size(120, 23)
-        Me.CbWorkWav.TabIndex = 140
-        Me.CbWorkWav.Text = "Select wav(work)"
-        Me.CbWorkWav.UseVisualStyleBackColor = True
-        '
-        'CbRestWav
-        '
-        Me.CbRestWav.Location = New System.Drawing.Point(257, 56)
-        Me.CbRestWav.Name = "CbRestWav"
-        Me.CbRestWav.Size = New System.Drawing.Size(120, 23)
-        Me.CbRestWav.TabIndex = 180
-        Me.CbRestWav.Text = "Select wav(rest)"
-        Me.CbRestWav.UseVisualStyleBackColor = True
-        '
-        'LbWavPathWork
-        '
-        Me.LbWavPathWork.AutoSize = True
-        Me.LbWavPathWork.Location = New System.Drawing.Point(383, 31)
-        Me.LbWavPathWork.Name = "LbWavPathWork"
-        Me.LbWavPathWork.Size = New System.Drawing.Size(184, 15)
-        Me.LbWavPathWork.TabIndex = 16
-        Me.LbWavPathWork.Text = "C:\Windows\Media\Alarm05.wav"
-        '
-        'LbWavPathRest
-        '
-        Me.LbWavPathRest.AutoSize = True
-        Me.LbWavPathRest.Location = New System.Drawing.Point(383, 60)
-        Me.LbWavPathRest.Name = "LbWavPathRest"
-        Me.LbWavPathRest.Size = New System.Drawing.Size(184, 15)
-        Me.LbWavPathRest.TabIndex = 17
-        Me.LbWavPathRest.Text = "C:\Windows\Media\Alarm02.wav"
-        '
-        'TimerAll
-        '
-        '
-        'OpenFileDialogLast
-        '
-        Me.OpenFileDialogLast.FileName = "OpenFileDialog1"
-        Me.OpenFileDialogLast.Filter = "wavファイル (*.wav)|*.wav"
-        Me.OpenFileDialogLast.InitialDirectory = "c:\windows\media\"
-        Me.OpenFileDialogLast.Title = "ラスト？秒で鳣らすWAVファイルを選択して下さい"
-        '
-        'CbSecLast
-        '
-        Me.CbSecLast.FormattingEnabled = True
-        Me.CbSecLast.Items.AddRange(New Object() {"0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"})
-        Me.CbSecLast.Location = New System.Drawing.Point(189, 85)
-        Me.CbSecLast.Name = "CbSecLast"
-        Me.CbSecLast.Size = New System.Drawing.Size(62, 23)
-        Me.CbSecLast.TabIndex = 210
-        Me.CbSecLast.Text = "10"
-        '
-        'CbMinLast
-        '
-        Me.CbMinLast.FormattingEnabled = True
-        Me.CbMinLast.Items.AddRange(New Object() {"01", "...", "59"})
-        Me.CbMinLast.Location = New System.Drawing.Point(121, 85)
-        Me.CbMinLast.Name = "CbMinLast"
-        Me.CbMinLast.Size = New System.Drawing.Size(62, 23)
-        Me.CbMinLast.TabIndex = 200
-        Me.CbMinLast.Text = "0"
-        '
-        'CbHourLast
-        '
-        Me.CbHourLast.FormattingEnabled = True
-        Me.CbHourLast.Items.AddRange(New Object() {"01", "...", "24"})
-        Me.CbHourLast.Location = New System.Drawing.Point(53, 85)
-        Me.CbHourLast.Name = "CbHourLast"
-        Me.CbHourLast.Size = New System.Drawing.Size(62, 23)
-        Me.CbHourLast.TabIndex = 190
-        Me.CbHourLast.Text = "0"
-        '
-        'LbLast
-        '
-        Me.LbLast.AutoSize = True
-        Me.LbLast.Location = New System.Drawing.Point(12, 88)
-        Me.LbLast.Name = "LbLast"
-        Me.LbLast.Size = New System.Drawing.Size(28, 15)
-        Me.LbLast.TabIndex = 18
-        Me.LbLast.Text = "Last"
-        '
-        'CbLastWork
-        '
-        Me.CbLastWork.AutoSize = True
-        Me.CbLastWork.Checked = True
-        Me.CbLastWork.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CbLastWork.Location = New System.Drawing.Point(257, 89)
-        Me.CbLastWork.Name = "CbLastWork"
-        Me.CbLastWork.Size = New System.Drawing.Size(54, 19)
-        Me.CbLastWork.TabIndex = 220
-        Me.CbLastWork.Text = "Work"
-        Me.CbLastWork.UseVisualStyleBackColor = True
-        '
-        'CbLastRest
-        '
-        Me.CbLastRest.AutoSize = True
-        Me.CbLastRest.Location = New System.Drawing.Point(317, 88)
-        Me.CbLastRest.Name = "CbLastRest"
-        Me.CbLastRest.Size = New System.Drawing.Size(48, 19)
-        Me.CbLastRest.TabIndex = 230
-        Me.CbLastRest.Text = "Rest"
-        Me.CbLastRest.UseVisualStyleBackColor = True
-        '
-        'CbSelectWavLast
-        '
-        Me.CbSelectWavLast.Location = New System.Drawing.Point(371, 86)
-        Me.CbSelectWavLast.Name = "CbSelectWavLast"
-        Me.CbSelectWavLast.Size = New System.Drawing.Size(120, 23)
-        Me.CbSelectWavLast.TabIndex = 231
-        Me.CbSelectWavLast.Text = "Select wav(last)"
-        Me.CbSelectWavLast.UseVisualStyleBackColor = True
-        '
-        'LbWavPathLast
-        '
-        Me.LbWavPathLast.AutoSize = True
-        Me.LbWavPathLast.Location = New System.Drawing.Point(497, 92)
-        Me.LbWavPathLast.Name = "LbWavPathLast"
-        Me.LbWavPathLast.Size = New System.Drawing.Size(255, 15)
-        Me.LbWavPathLast.TabIndex = 262
-        Me.LbWavPathLast.Text = "C:\Windows\Media\Windows Foreground.wav"
-        '
-        'CbPause
-        '
-        Me.CbPause.Location = New System.Drawing.Point(171, 113)
-        Me.CbPause.Name = "CbPause"
-        Me.CbPause.Size = New System.Drawing.Size(75, 23)
-        Me.CbPause.TabIndex = 260
-        Me.CbPause.Text = "Pause"
-        Me.CbPause.UseVisualStyleBackColor = True
-        '
-        'OpenFileDialog1
-        '
-        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        Me.OpenFileDialog1.Filter = "wavファイル (*.wav)|*.wav"
-        Me.OpenFileDialog1.InitialDirectory = "c:\windows\media\"
-        Me.OpenFileDialog1.Title = "ラスト？秒で鳴らすWAVファイルを選択して下さい"
-        '
-        'OpenFileDialog2
-        '
-        Me.OpenFileDialog2.FileName = "OpenFileDialog1"
-        Me.OpenFileDialog2.Filter = "wavファイル (*.wav)|*.wav"
-        Me.OpenFileDialog2.InitialDirectory = "c:\windows\media\"
-        Me.OpenFileDialog2.Title = "ラスト？秒で鳴らすWAVファイルを選択して下さい"
-        '
-        'OpenFileDialogWork
-        '
-        Me.OpenFileDialogWork.FileName = "OpenFileDialog3"
-        '
-        'OpenFileDialogRest
-        '
-        Me.OpenFileDialogRest.FileName = "OpenFileDialog3"
-        '
-        'SetTimerForm
-        '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(795, 148)
-        Me.Controls.Add(Me.CbPause)
-        Me.Controls.Add(Me.LbWavPathLast)
-        Me.Controls.Add(Me.CbSelectWavLast)
-        Me.Controls.Add(Me.CbLastRest)
-        Me.Controls.Add(Me.CbLastWork)
-        Me.Controls.Add(Me.CbSecLast)
-        Me.Controls.Add(Me.CbMinLast)
-        Me.Controls.Add(Me.CbHourLast)
-        Me.Controls.Add(Me.LbLast)
-        Me.Controls.Add(Me.LbWavPathRest)
-        Me.Controls.Add(Me.LbWavPathWork)
-        Me.Controls.Add(Me.CbRestWav)
-        Me.Controls.Add(Me.CbWorkWav)
-        Me.Controls.Add(Me.CbClose)
-        Me.Controls.Add(Me.CbStop)
-        Me.Controls.Add(Me.CbStart)
-        Me.Controls.Add(Me.LbSecTitle)
-        Me.Controls.Add(Me.LbMinTitle)
-        Me.Controls.Add(Me.CbSecRest)
-        Me.Controls.Add(Me.CbSecWork)
-        Me.Controls.Add(Me.CbMinRest)
-        Me.Controls.Add(Me.CbMinWork)
-        Me.Controls.Add(Me.LbHourTitle)
-        Me.Controls.Add(Me.CbHourRest)
-        Me.Controls.Add(Me.CbHourWork)
-        Me.Controls.Add(Me.LbRestTitle)
-        Me.Controls.Add(Me.LbWorkTitle)
-        Me.Name = "SetTimerForm"
-        Me.Text = "Set Timer"
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        components = New ComponentModel.Container()
+        LbWorkTitle = New Label()
+        LbRestTitle = New Label()
+        CbHourWork = New ComboBox()
+        CbHourRest = New ComboBox()
+        LbHourTitle = New Label()
+        CbMinWork = New ComboBox()
+        CbMinRest = New ComboBox()
+        CbSecWork = New ComboBox()
+        CbSecRest = New ComboBox()
+        LbMinTitle = New Label()
+        LbSecTitle = New Label()
+        CbStart = New Button()
+        CbStop = New Button()
+        CbClose = New Button()
+        CbWorkWav = New Button()
+        CbRestWav = New Button()
+        LbWavPathWork = New Label()
+        LbWavPathRest = New Label()
+        TimerAll = New Timer(components)
+        TimerRest = New Timer(components)
+        TimerWork = New Timer(components)
+        OpenFileDialogLast = New OpenFileDialog()
+        CbSecLast = New ComboBox()
+        CbMinLast = New ComboBox()
+        CbHourLast = New ComboBox()
+        LbLast = New Label()
+        CbLastWork = New CheckBox()
+        CbLastRest = New CheckBox()
+        CbSelectWavLast = New Button()
+        LbWavPathLast = New Label()
+        CbPause = New Button()
+        OpenFileDialog1 = New OpenFileDialog()
+        OpenFileDialog2 = New OpenFileDialog()
+        OpenFileDialogWork = New OpenFileDialog()
+        OpenFileDialogRest = New OpenFileDialog()
+        SuspendLayout()
+        ' 
+        ' LbWorkTitle
+        ' 
+        LbWorkTitle.AutoSize = True
+        LbWorkTitle.Location = New Point(12, 30)
+        LbWorkTitle.Name = "LbWorkTitle"
+        LbWorkTitle.Size = New Size(35, 15)
+        LbWorkTitle.TabIndex = 0
+        LbWorkTitle.Text = "Work"
+        ' 
+        ' LbRestTitle
+        ' 
+        LbRestTitle.AutoSize = True
+        LbRestTitle.Location = New Point(12, 59)
+        LbRestTitle.Name = "LbRestTitle"
+        LbRestTitle.Size = New Size(29, 15)
+        LbRestTitle.TabIndex = 1
+        LbRestTitle.Text = "Rest"
+        ' 
+        ' CbHourWork
+        ' 
+        CbHourWork.FormattingEnabled = True
+        CbHourWork.Items.AddRange(New Object() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"})
+        CbHourWork.Location = New Point(53, 27)
+        CbHourWork.Name = "CbHourWork"
+        CbHourWork.Size = New Size(62, 23)
+        CbHourWork.TabIndex = 110
+        CbHourWork.Text = "0"
+        ' 
+        ' CbHourRest
+        ' 
+        CbHourRest.FormattingEnabled = True
+        CbHourRest.Items.AddRange(New Object() {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"})
+        CbHourRest.Location = New Point(53, 56)
+        CbHourRest.Name = "CbHourRest"
+        CbHourRest.Size = New Size(62, 23)
+        CbHourRest.TabIndex = 150
+        CbHourRest.Text = "0"
+        ' 
+        ' LbHourTitle
+        ' 
+        LbHourTitle.AutoSize = True
+        LbHourTitle.Location = New Point(63, 9)
+        LbHourTitle.Name = "LbHourTitle"
+        LbHourTitle.Size = New Size(34, 15)
+        LbHourTitle.TabIndex = 4
+        LbHourTitle.Text = "Hour"
+        ' 
+        ' CbMinWork
+        ' 
+        CbMinWork.FormattingEnabled = True
+        CbMinWork.Items.AddRange(New Object() {"00", "01", "02", "...", "59"})
+        CbMinWork.Location = New Point(121, 27)
+        CbMinWork.Name = "CbMinWork"
+        CbMinWork.Size = New Size(62, 23)
+        CbMinWork.TabIndex = 120
+        CbMinWork.Text = "20"
+        ' 
+        ' CbMinRest
+        ' 
+        CbMinRest.FormattingEnabled = True
+        CbMinRest.Items.AddRange(New Object() {"01", "02", "...", "59"})
+        CbMinRest.Location = New Point(121, 56)
+        CbMinRest.Name = "CbMinRest"
+        CbMinRest.Size = New Size(62, 23)
+        CbMinRest.TabIndex = 160
+        CbMinRest.Text = "0"
+        ' 
+        ' CbSecWork
+        ' 
+        CbSecWork.FormattingEnabled = True
+        CbSecWork.Items.AddRange(New Object() {"0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"})
+        CbSecWork.Location = New Point(189, 27)
+        CbSecWork.Name = "CbSecWork"
+        CbSecWork.Size = New Size(62, 23)
+        CbSecWork.TabIndex = 130
+        CbSecWork.Text = "0"
+        ' 
+        ' CbSecRest
+        ' 
+        CbSecRest.FormattingEnabled = True
+        CbSecRest.Items.AddRange(New Object() {"0", "5", "10", "...", "55"})
+        CbSecRest.Location = New Point(189, 56)
+        CbSecRest.Name = "CbSecRest"
+        CbSecRest.Size = New Size(62, 23)
+        CbSecRest.TabIndex = 170
+        CbSecRest.Text = "30"
+        ' 
+        ' LbMinTitle
+        ' 
+        LbMinTitle.AutoSize = True
+        LbMinTitle.Location = New Point(137, 9)
+        LbMinTitle.Name = "LbMinTitle"
+        LbMinTitle.Size = New Size(28, 15)
+        LbMinTitle.TabIndex = 9
+        LbMinTitle.Text = "Min"
+        ' 
+        ' LbSecTitle
+        ' 
+        LbSecTitle.AutoSize = True
+        LbSecTitle.Location = New Point(204, 9)
+        LbSecTitle.Name = "LbSecTitle"
+        LbSecTitle.Size = New Size(25, 15)
+        LbSecTitle.TabIndex = 10
+        LbSecTitle.Text = "Sec"
+        ' 
+        ' CbStart
+        ' 
+        CbStart.BackColor = SystemColors.ControlLightLight
+        CbStart.Location = New Point(12, 114)
+        CbStart.Name = "CbStart"
+        CbStart.Size = New Size(75, 23)
+        CbStart.TabIndex = 240
+        CbStart.Text = "Start"
+        CbStart.UseVisualStyleBackColor = False
+        ' 
+        ' CbStop
+        ' 
+        CbStop.Location = New Point(90, 114)
+        CbStop.Name = "CbStop"
+        CbStop.Size = New Size(75, 23)
+        CbStop.TabIndex = 250
+        CbStop.Text = "Stop"
+        CbStop.UseVisualStyleBackColor = True
+        ' 
+        ' CbClose
+        ' 
+        CbClose.Location = New Point(252, 113)
+        CbClose.Name = "CbClose"
+        CbClose.Size = New Size(75, 23)
+        CbClose.TabIndex = 270
+        CbClose.Text = "Close"
+        CbClose.UseVisualStyleBackColor = True
+        ' 
+        ' CbWorkWav
+        ' 
+        CbWorkWav.Location = New Point(257, 27)
+        CbWorkWav.Name = "CbWorkWav"
+        CbWorkWav.Size = New Size(120, 23)
+        CbWorkWav.TabIndex = 140
+        CbWorkWav.Text = "Select wav(work)"
+        CbWorkWav.UseVisualStyleBackColor = True
+        ' 
+        ' CbRestWav
+        ' 
+        CbRestWav.Location = New Point(257, 56)
+        CbRestWav.Name = "CbRestWav"
+        CbRestWav.Size = New Size(120, 23)
+        CbRestWav.TabIndex = 180
+        CbRestWav.Text = "Select wav(rest)"
+        CbRestWav.UseVisualStyleBackColor = True
+        ' 
+        ' LbWavPathWork
+        ' 
+        LbWavPathWork.AutoSize = True
+        LbWavPathWork.Location = New Point(383, 31)
+        LbWavPathWork.Name = "LbWavPathWork"
+        LbWavPathWork.Size = New Size(184, 15)
+        LbWavPathWork.TabIndex = 16
+        LbWavPathWork.Text = "C:\Windows\Media\Alarm05.wav"
+        ' 
+        ' LbWavPathRest
+        ' 
+        LbWavPathRest.AutoSize = True
+        LbWavPathRest.Location = New Point(383, 60)
+        LbWavPathRest.Name = "LbWavPathRest"
+        LbWavPathRest.Size = New Size(184, 15)
+        LbWavPathRest.TabIndex = 17
+        LbWavPathRest.Text = "C:\Windows\Media\Alarm02.wav"
+        ' 
+        ' TimerAll
+        ' 
+        ' 
+        ' OpenFileDialogLast
+        ' 
+        OpenFileDialogLast.FileName = "OpenFileDialog1"
+        OpenFileDialogLast.Filter = "wavファイル (*.wav)|*.wav"
+        OpenFileDialogLast.InitialDirectory = "c:\windows\media\"
+        OpenFileDialogLast.Title = "ラスト？秒で鳣らすWAVファイルを選択して下さい"
+        ' 
+        ' CbSecLast
+        ' 
+        CbSecLast.FormattingEnabled = True
+        CbSecLast.Items.AddRange(New Object() {"0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"})
+        CbSecLast.Location = New Point(189, 85)
+        CbSecLast.Name = "CbSecLast"
+        CbSecLast.Size = New Size(62, 23)
+        CbSecLast.TabIndex = 210
+        CbSecLast.Text = "10"
+        ' 
+        ' CbMinLast
+        ' 
+        CbMinLast.FormattingEnabled = True
+        CbMinLast.Items.AddRange(New Object() {"01", "...", "59"})
+        CbMinLast.Location = New Point(121, 85)
+        CbMinLast.Name = "CbMinLast"
+        CbMinLast.Size = New Size(62, 23)
+        CbMinLast.TabIndex = 200
+        CbMinLast.Text = "0"
+        ' 
+        ' CbHourLast
+        ' 
+        CbHourLast.FormattingEnabled = True
+        CbHourLast.Items.AddRange(New Object() {"01", "...", "24"})
+        CbHourLast.Location = New Point(53, 85)
+        CbHourLast.Name = "CbHourLast"
+        CbHourLast.Size = New Size(62, 23)
+        CbHourLast.TabIndex = 190
+        CbHourLast.Text = "0"
+        ' 
+        ' LbLast
+        ' 
+        LbLast.AutoSize = True
+        LbLast.Location = New Point(12, 88)
+        LbLast.Name = "LbLast"
+        LbLast.Size = New Size(28, 15)
+        LbLast.TabIndex = 18
+        LbLast.Text = "Last"
+        ' 
+        ' CbLastWork
+        ' 
+        CbLastWork.AutoSize = True
+        CbLastWork.Checked = True
+        CbLastWork.CheckState = CheckState.Checked
+        CbLastWork.Location = New Point(257, 89)
+        CbLastWork.Name = "CbLastWork"
+        CbLastWork.Size = New Size(54, 19)
+        CbLastWork.TabIndex = 220
+        CbLastWork.Text = "Work"
+        CbLastWork.UseVisualStyleBackColor = True
+        ' 
+        ' CbLastRest
+        ' 
+        CbLastRest.AutoSize = True
+        CbLastRest.Location = New Point(317, 88)
+        CbLastRest.Name = "CbLastRest"
+        CbLastRest.Size = New Size(48, 19)
+        CbLastRest.TabIndex = 230
+        CbLastRest.Text = "Rest"
+        CbLastRest.UseVisualStyleBackColor = True
+        ' 
+        ' CbSelectWavLast
+        ' 
+        CbSelectWavLast.Location = New Point(371, 86)
+        CbSelectWavLast.Name = "CbSelectWavLast"
+        CbSelectWavLast.Size = New Size(120, 23)
+        CbSelectWavLast.TabIndex = 231
+        CbSelectWavLast.Text = "Select wav(last)"
+        CbSelectWavLast.UseVisualStyleBackColor = True
+        ' 
+        ' LbWavPathLast
+        ' 
+        LbWavPathLast.AutoSize = True
+        LbWavPathLast.Location = New Point(497, 92)
+        LbWavPathLast.Name = "LbWavPathLast"
+        LbWavPathLast.Size = New Size(255, 15)
+        LbWavPathLast.TabIndex = 262
+        LbWavPathLast.Text = "C:\Windows\Media\Windows Foreground.wav"
+        ' 
+        ' CbPause
+        ' 
+        CbPause.Location = New Point(171, 113)
+        CbPause.Name = "CbPause"
+        CbPause.Size = New Size(75, 23)
+        CbPause.TabIndex = 260
+        CbPause.Text = "Pause"
+        CbPause.UseVisualStyleBackColor = True
+        ' 
+        ' OpenFileDialog1
+        ' 
+        OpenFileDialog1.FileName = "OpenFileDialog1"
+        OpenFileDialog1.Filter = "wavファイル (*.wav)|*.wav"
+        OpenFileDialog1.InitialDirectory = "c:\windows\media\"
+        OpenFileDialog1.Title = "ラスト？秒で鳴らすWAVファイルを選択して下さい"
+        ' 
+        ' OpenFileDialog2
+        ' 
+        OpenFileDialog2.FileName = "OpenFileDialog1"
+        OpenFileDialog2.Filter = "wavファイル (*.wav)|*.wav"
+        OpenFileDialog2.InitialDirectory = "c:\windows\media\"
+        OpenFileDialog2.Title = "ラスト？秒で鳴らすWAVファイルを選択して下さい"
+        ' 
+        ' OpenFileDialogWork
+        ' 
+        OpenFileDialogWork.FileName = "OpenFileDialog3"
+        ' 
+        ' OpenFileDialogRest
+        ' 
+        OpenFileDialogRest.FileName = "OpenFileDialog3"
+        ' 
+        ' SetTimerForm
+        ' 
+        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleMode = AutoScaleMode.Font
+        ClientSize = New Size(795, 148)
+        Controls.Add(CbPause)
+        Controls.Add(LbWavPathLast)
+        Controls.Add(CbSelectWavLast)
+        Controls.Add(CbLastRest)
+        Controls.Add(CbLastWork)
+        Controls.Add(CbSecLast)
+        Controls.Add(CbMinLast)
+        Controls.Add(CbHourLast)
+        Controls.Add(LbLast)
+        Controls.Add(LbWavPathRest)
+        Controls.Add(LbWavPathWork)
+        Controls.Add(CbRestWav)
+        Controls.Add(CbWorkWav)
+        Controls.Add(CbClose)
+        Controls.Add(CbStop)
+        Controls.Add(CbStart)
+        Controls.Add(LbSecTitle)
+        Controls.Add(LbMinTitle)
+        Controls.Add(CbSecRest)
+        Controls.Add(CbSecWork)
+        Controls.Add(CbMinRest)
+        Controls.Add(CbMinWork)
+        Controls.Add(LbHourTitle)
+        Controls.Add(CbHourRest)
+        Controls.Add(CbHourWork)
+        Controls.Add(LbRestTitle)
+        Controls.Add(LbWorkTitle)
+        Name = "SetTimerForm"
+        Text = "Set Timer"
+        ResumeLayout(False)
+        PerformLayout()
     End Sub
 
     Friend WithEvents LbWorkTitle As Label

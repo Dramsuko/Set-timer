@@ -42,10 +42,11 @@ Partial Class SetTimerForm
         Me.CbHourWork.Text = registryClass.GetValue("HourWork", CInt(Me.CbHourWork.Text)).ToString()
         Me.CbMinWork.Text = registryClass.GetValue("MinWork", CInt(Me.CbMinWork.Text)).ToString()
         Me.CbSecWork.Text = registryClass.GetValue("SecWork", CInt(Me.CbSecWork.Text)).ToString()
+
+        Call start()
     End Sub
 
-    ' Start ボタン
-    Private Sub CbStart_Click(sender As Object, e As EventArgs) Handles CbStart.Click
+    Private Sub start()
         Try
             Me.initialButtonColor = Me.CbStart.BackColor
             Me.CbStart.BackColor = Color.LightGreen
@@ -67,6 +68,15 @@ Partial Class SetTimerForm
             Me.TimerAll.Start()
             Debug.WriteLine("タイマー開始: Workフェーズ")
 
+        Catch ex As Exception
+            Debug.WriteLine("Start_Click例外: " & ex.Message)
+        End Try
+    End Sub
+
+    ' Start ボタン
+    Private Sub CbStart_Click(sender As Object, e As EventArgs) Handles CbStart.Click
+        Try
+            Call start()
         Catch ex As Exception
             Debug.WriteLine("Start_Click例外: " & ex.Message)
         End Try
@@ -140,5 +150,71 @@ Partial Class SetTimerForm
         registryClass.SaveValue("HourWork", CInt(CbHourWork.Text))
     End Sub
 
-    '…他の SelectedIndexChanged も同様に…
+    Private Sub CbRestWav_Click(sender As Object, e As EventArgs) Handles CbRestWav.Click
+
+        Try
+            With OpenFileDialogRest
+                .Filter = "WAV ファイル (*.wav)|*.wav"
+                .InitialDirectory = "C:\Windows\Media\"
+                .Title = "Rest フェーズで再生する WAV を選択"
+                If .ShowDialog() = DialogResult.OK Then
+                    LbWavPathRest.Text = .FileName
+                    ' 必要ならレジストリに保存
+                    registryClass.SaveValue("WavPathRest", .FileName)
+                End If
+            End With
+        Catch ex As Exception
+            Debug.WriteLine(ex.Message)
+        End Try
+
+    End Sub
+
+    ' キー押下イベント（KeyPreview=True のおかげでここに届く）
+    Private Sub SetTimerForm_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        Try
+            If e.KeyCode = Keys.Escape Then
+                ' 全フォームを閉じてメッセージループを抜ける
+                Application.Exit()
+                ' あるいは Me.Close() でも OK（メインフォームならアプリ終了になります）
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub CbSelectWavLast_Click(sender As Object, e As EventArgs) Handles CbSelectWavLast.Click
+        Try
+            With OpenFileDialogLast
+                .Filter = "WAV ファイル (*.wav)|*.wav"
+                .InitialDirectory = "C:\Windows\Media\"
+                .Title = "Last フェーズで再生する WAV を選択"
+                If .ShowDialog() = DialogResult.OK Then
+                    LbWavPathLast.Text = .FileName
+                    ' 必要ならレジストリに保存
+                    registryClass.SaveValue("WavPathLast", .FileName)
+                End If
+            End With
+        Catch ex As Exception
+            Debug.WriteLine(ex.Message)
+        End Try
+
+    End Sub
+
+    Private Sub CbWorkWav_Click(sender As Object, e As EventArgs) Handles CbWorkWav.Click
+        Try
+            With OpenFileDialogWork
+                .Filter = "WAV ファイル (*.wav)|*.wav"
+                .InitialDirectory = "C:\Windows\Media\"
+                .Title = "Work フェーズで再生する WAV を選択"
+                If .ShowDialog() = DialogResult.OK Then
+                    LbWavPathWork.Text = .FileName
+                    ' 必要ならレジストリに保存
+                    registryClass.SaveValue("WavPathWork", .FileName)
+                End If
+            End With
+        Catch ex As Exception
+            Debug.WriteLine(ex.Message)
+        End Try
+
+    End Sub
 End Class
