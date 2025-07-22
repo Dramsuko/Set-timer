@@ -32,6 +32,26 @@ Partial Class SetTimerForm
     ' Pause フラグ
     Private pauseFlag As Boolean
 
+    Private Const REGISTRY_HOUR_WORK As String = "HourWork"
+    Private Const REGISTRY_MIN_WORK As String = "MinWork"
+    Private Const REGISTRY_SEC_WORK As String = "SecWork"
+
+    Private Const REGISTRY_HOUR_REST As String = "HourRest"
+    Private Const REGISTRY_MIN_REST As String = "MinRest"
+    Private Const REGISTRY_SEC_REST As String = "SecRest"
+
+    Private Const REGISTRY_HOUR_LAST As String = "HourLast"
+    Private Const REGISTRY_MIN_LAST As String = "MinLast"
+    Private Const REGISTRY_SEC_LAST As String = "SecLast"
+
+
+    Private Const REGISTRY_CHECK_WORK As String = "CheckWork"
+    Private Const REGISTRY_CHECK_REST As String = "CheckRest"
+
+    Private Const REGISTRY_WAV_PATH_WORK As String = "WavPathWork"
+    Private Const REGISTRY_WAV_PATH_REST As String = "WavPathRest"
+    Private Const REGISTRY_WAV_PATH_LAST As String = "WavPathLast"
+
     '――― イベントハンドラ ―――
 
     ' フォームロード
@@ -44,6 +64,81 @@ Partial Class SetTimerForm
         Me.CbSecWork.Text = registryClass.GetValue("SecWork", CInt(Me.CbSecWork.Text)).ToString()
 
         Call start()
+    End Sub
+
+    Private Sub SetRegistry()
+        Try
+            If registryClass.ExistsValue(REGISTRY_HOUR_WORK) Then
+                CbHourWork.Text = registryClass.GetValue(REGISTRY_HOUR_WORK, 0).ToString()
+            End If
+
+            If registryClass.ExistsValue(REGISTRY_MIN_WORK) Then
+                CbMinWork.Text = registryClass.GetValue(REGISTRY_MIN_WORK, 0).ToString()
+            End If
+
+            If registryClass.ExistsValue(REGISTRY_SEC_WORK) Then
+                CbSecWork.Text = registryClass.GetValue(REGISTRY_SEC_WORK, 0).ToString()
+            End If
+
+
+
+
+            If registryClass.ExistsValue(REGISTRY_HOUR_REST) Then
+                CbHourRest.Text = registryClass.GetValue(REGISTRY_HOUR_REST, 0).ToString()
+            End If
+
+            If registryClass.ExistsValue(REGISTRY_MIN_REST) Then
+                CbMinRest.Text = registryClass.GetValue(REGISTRY_MIN_REST, 0).ToString()
+            End If
+
+            If registryClass.ExistsValue(REGISTRY_SEC_REST) Then
+                CbSecRest.Text = registryClass.GetValue(REGISTRY_SEC_REST, 0).ToString()
+            End If
+
+
+
+
+            If registryClass.ExistsValue(REGISTRY_HOUR_LAST) Then
+                CbHourLast.Text = registryClass.GetValue(REGISTRY_HOUR_LAST, 0).ToString()
+            End If
+
+            If registryClass.ExistsValue(REGISTRY_MIN_LAST) Then
+                CbMinLast.Text = registryClass.GetValue(REGISTRY_MIN_LAST, 0).ToString()
+            End If
+
+            If registryClass.ExistsValue(REGISTRY_SEC_LAST) Then
+                CbSecLast.Text = registryClass.GetValue(REGISTRY_SEC_LAST, 0).ToString()
+            End If
+
+
+
+            If registryClass.ExistsValue(REGISTRY_CHECK_WORK) Then
+                CbLastWork.Checked = registryClass.GetValue(REGISTRY_CHECK_WORK, False)
+            End If
+
+            If registryClass.ExistsValue(REGISTRY_CHECK_REST) Then
+                CbLastRest.Checked = registryClass.GetValue(REGISTRY_CHECK_REST, False)
+            End If
+
+
+
+
+            If registryClass.ExistsValue(REGISTRY_WAV_PATH_WORK) Then
+                LbWavPathWork.Text = registryClass.GetValue(REGISTRY_WAV_PATH_WORK, "C:\Windows\Media\chimes.wav")
+            End If
+
+            If registryClass.ExistsValue(REGISTRY_WAV_PATH_REST) Then
+                LbWavPathRest.Text = registryClass.GetValue(REGISTRY_WAV_PATH_REST, "C:\Windows\Media\chimes.wav")
+            End If
+
+            If registryClass.ExistsValue(REGISTRY_WAV_PATH_LAST) Then
+                LbWavPathLast.Text = registryClass.GetValue(REGISTRY_WAV_PATH_LAST, "C:\Windows\Media\chimes.wav")
+            End If
+
+
+        Catch ex As Exception
+            Debug.WriteLine("SetRegistry例外: " & ex.Message)
+        End Try
     End Sub
 
     Private Sub start()
@@ -160,29 +255,7 @@ Partial Class SetTimerForm
         Application.Exit()
     End Sub
 
-    ' 値変更でレジストリ保存
-    Private Sub CbHourWork_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbHourWork.SelectedIndexChanged
-        registryClass.SaveValue("HourWork", CInt(CbHourWork.Text))
-    End Sub
 
-    Private Sub CbRestWav_Click(sender As Object, e As EventArgs) Handles CbRestWav.Click
-
-        Try
-            With OpenFileDialogRest
-                .Filter = "WAV ファイル (*.wav)|*.wav"
-                .InitialDirectory = "C:\Windows\Media\"
-                .Title = "Rest フェーズで再生する WAV を選択"
-                If .ShowDialog() = DialogResult.OK Then
-                    LbWavPathRest.Text = .FileName
-                    ' 必要ならレジストリに保存
-                    registryClass.SaveValue("WavPathRest", .FileName)
-                End If
-            End With
-        Catch ex As Exception
-            Debug.WriteLine(ex.Message)
-        End Try
-
-    End Sub
 
     ' キー押下イベント（KeyPreview=True のおかげでここに届く）
     Private Sub SetTimerForm_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
@@ -197,23 +270,7 @@ Partial Class SetTimerForm
         End Try
     End Sub
 
-    Private Sub CbSelectWavLast_Click(sender As Object, e As EventArgs) Handles CbSelectWavLast.Click
-        Try
-            With OpenFileDialogLast
-                .Filter = "WAV ファイル (*.wav)|*.wav"
-                .InitialDirectory = "C:\Windows\Media\"
-                .Title = "Last フェーズで再生する WAV を選択"
-                If .ShowDialog() = DialogResult.OK Then
-                    LbWavPathLast.Text = .FileName
-                    ' 必要ならレジストリに保存
-                    registryClass.SaveValue("WavPathLast", .FileName)
-                End If
-            End With
-        Catch ex As Exception
-            Debug.WriteLine(ex.Message)
-        End Try
 
-    End Sub
 
     Private Sub CbWorkWav_Click(sender As Object, e As EventArgs) Handles CbWorkWav.Click
         Try
@@ -224,7 +281,7 @@ Partial Class SetTimerForm
                 If .ShowDialog() = DialogResult.OK Then
                     LbWavPathWork.Text = .FileName
                     ' 必要ならレジストリに保存
-                    registryClass.SaveValue("WavPathWork", .FileName)
+                    registryClass.SaveValue(REGISTRY_WAV_PATH_WORK, .FileName)
                 End If
             End With
         Catch ex As Exception
@@ -232,4 +289,99 @@ Partial Class SetTimerForm
         End Try
 
     End Sub
+
+    Private Sub CbRestWav_Click(sender As Object, e As EventArgs) Handles CbRestWav.Click
+
+        Try
+            With OpenFileDialogRest
+                .Filter = "WAV ファイル (*.wav)|*.wav"
+                .InitialDirectory = "C:\Windows\Media\"
+                .Title = "Rest フェーズで再生する WAV を選択"
+                If .ShowDialog() = DialogResult.OK Then
+                    LbWavPathRest.Text = .FileName
+                    ' 必要ならレジストリに保存
+                    registryClass.SaveValue(REGISTRY_WAV_PATH_REST, .FileName)
+                End If
+            End With
+        Catch ex As Exception
+            Debug.WriteLine(ex.Message)
+        End Try
+
+    End Sub
+
+    Private Sub CbSelectWavLast_Click(sender As Object, e As EventArgs) Handles CbSelectWavLast.Click
+        Try
+            With OpenFileDialogLast
+                .Filter = "WAV ファイル (*.wav)|*.wav"
+                .InitialDirectory = "C:\Windows\Media\"
+                .Title = "Last フェーズで再生する WAV を選択"
+                If .ShowDialog() = DialogResult.OK Then
+                    LbWavPathLast.Text = .FileName
+                    ' 必要ならレジストリに保存
+                    registryClass.SaveValue(REGISTRY_WAV_PATH_LAST, .FileName)
+                End If
+            End With
+        Catch ex As Exception
+            Debug.WriteLine(ex.Message)
+        End Try
+
+    End Sub
+
+
+
+
+    ' 値変更でレジストリ保存
+    Private Sub CbHourWork_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbHourWork.SelectedIndexChanged
+        registryClass.SaveValue(REGISTRY_HOUR_WORK, CInt(CbHourWork.Text))
+    End Sub
+
+    Private Sub CbMinWork_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbMinWork.SelectedIndexChanged
+        registryClass.SaveValue(REGISTRY_MIN_WORK, CInt(CbMinWork.Text))
+    End Sub
+
+    Private Sub CbSecWork_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbSecWork.SelectedIndexChanged
+        registryClass.SaveValue(REGISTRY_SEC_WORK, CInt(CbSecWork.Text))
+    End Sub
+
+
+
+    Private Sub CbHourRest_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbHourRest.SelectedIndexChanged
+        registryClass.SaveValue(REGISTRY_HOUR_REST, CInt(CbHourRest.Text))
+    End Sub
+
+    Private Sub CbMinRest_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbMinRest.SelectedIndexChanged
+        registryClass.SaveValue(REGISTRY_MIN_REST, CInt(CbMinRest.Text))
+    End Sub
+
+    Private Sub CbSecRest_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbSecRest.SelectedIndexChanged
+        registryClass.SaveValue(REGISTRY_SEC_REST, CInt(CbSecRest.Text))
+    End Sub
+
+
+
+    Private Sub CbHourLast_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbHourLast.SelectedIndexChanged
+        registryClass.SaveValue(REGISTRY_HOUR_LAST, CInt(CbHourLast.Text))
+    End Sub
+
+    Private Sub CbMinLast_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbMinLast.SelectedIndexChanged
+        registryClass.SaveValue(REGISTRY_MIN_LAST, CInt(CbMinLast.Text))
+    End Sub
+
+    Private Sub CbSecLast_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbSecLast.SelectedIndexChanged
+        registryClass.SaveValue(REGISTRY_SEC_LAST, CInt(CbSecLast.Text))
+    End Sub
+
+
+
+    Private Sub CbLastWork_CheckedChanged(sender As Object, e As EventArgs) Handles CbLastWork.CheckedChanged
+        registryClass.SaveValue(REGISTRY_CHECK_WORK, CbLastWork.Checked)
+    End Sub
+
+    Private Sub CbLastRest_CheckedChanged(sender As Object, e As EventArgs) Handles CbLastRest.CheckedChanged
+        registryClass.SaveValue(REGISTRY_CHECK_REST, CbLastRest.Checked)
+    End Sub
+
+
+
+
 End Class

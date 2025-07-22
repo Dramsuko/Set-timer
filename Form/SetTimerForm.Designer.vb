@@ -351,7 +351,7 @@ Partial Class SetTimerForm
         ' 
         ' SetTimerForm
         ' 
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(795, 148)
         Controls.Add(CbPause)

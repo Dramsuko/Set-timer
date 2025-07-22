@@ -27,6 +27,13 @@ Namespace WaveFlat.SetTimer
             End Using
         End Function
 
+        Public Function ExistsValue(keyName As String) As Boolean
+            Using regKey = Registry.CurrentUser.OpenSubKey(BaseKey)
+                If regKey Is Nothing Then Return False
+                Return regKey.GetValue(keyName) IsNot Nothing
+            End Using
+        End Function
+
         Public Sub DeleteValue(keyName As String)
             Using regKey = Registry.CurrentUser.OpenSubKey(BaseKey, writable:=True)
                 regKey?.DeleteValue(keyName, throwOnMissingValue:=False)
