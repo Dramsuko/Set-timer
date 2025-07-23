@@ -213,7 +213,13 @@ Partial Class SetTimerForm
                 If remainingWorkSeconds <= 0 Then
                     My.Computer.Audio.Play(LbWavPathWork.Text, AudioPlayMode.WaitToComplete)
                     isWorkPhase = False
+                    remainingWorkSeconds = initialWorkSeconds
                     remainingRestSeconds = initialRestSeconds
+
+                    Dim tsWFinished = TimeSpan.FromSeconds(remainingWorkSeconds)
+                    CbHourWork.Text = tsWFinished.Hours.ToString()
+                    CbMinWork.Text = tsWFinished.Minutes.ToString()
+                    CbSecWork.Text = tsWFinished.Seconds.ToString()
                 End If
 
             Else
@@ -232,6 +238,12 @@ Partial Class SetTimerForm
                     My.Computer.Audio.Play(LbWavPathRest.Text, AudioPlayMode.WaitToComplete)
                     isWorkPhase = True
                     remainingWorkSeconds = initialWorkSeconds
+                    remainingRestSeconds = initialRestSeconds
+
+                    Dim tsRFinished = TimeSpan.FromSeconds(remainingRestSeconds)
+                    CbHourRest.Text = tsRFinished.Hours.ToString()
+                    CbMinRest.Text = tsRFinished.Minutes.ToString()
+                    CbSecRest.Text = tsRFinished.Seconds.ToString()
                 End If
             End If
 
