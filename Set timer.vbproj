@@ -35,6 +35,7 @@
 
   <ItemGroup>
     <Folder Include="Module\" />
+    <Folder Include="Doc\" />
   </ItemGroup>
 
   <ItemGroup>
