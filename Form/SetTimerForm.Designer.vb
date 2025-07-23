@@ -23,6 +23,7 @@ Partial Class SetTimerForm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SetTimerForm))
         LbWorkTitle = New Label()
         LbRestTitle = New Label()
         CbHourWork = New ComboBox()
@@ -86,17 +87,15 @@ Partial Class SetTimerForm
         CbHourWork.Name = "CbHourWork"
         CbHourWork.Size = New Size(62, 23)
         CbHourWork.TabIndex = 110
-        CbHourWork.Text = "0"
         ' 
         ' CbHourRest
         ' 
         CbHourRest.FormattingEnabled = True
-        CbHourRest.Items.AddRange(New Object() {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"})
+        CbHourRest.Items.AddRange(New Object() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"})
         CbHourRest.Location = New Point(53, 56)
         CbHourRest.Name = "CbHourRest"
         CbHourRest.Size = New Size(62, 23)
         CbHourRest.TabIndex = 150
-        CbHourRest.Text = "0"
         ' 
         ' LbHourTitle
         ' 
@@ -115,7 +114,6 @@ Partial Class SetTimerForm
         CbMinWork.Name = "CbMinWork"
         CbMinWork.Size = New Size(62, 23)
         CbMinWork.TabIndex = 120
-        CbMinWork.Text = "20"
         ' 
         ' CbMinRest
         ' 
@@ -125,7 +123,6 @@ Partial Class SetTimerForm
         CbMinRest.Name = "CbMinRest"
         CbMinRest.Size = New Size(62, 23)
         CbMinRest.TabIndex = 160
-        CbMinRest.Text = "0"
         ' 
         ' CbSecWork
         ' 
@@ -135,17 +132,15 @@ Partial Class SetTimerForm
         CbSecWork.Name = "CbSecWork"
         CbSecWork.Size = New Size(62, 23)
         CbSecWork.TabIndex = 130
-        CbSecWork.Text = "0"
         ' 
         ' CbSecRest
         ' 
         CbSecRest.FormattingEnabled = True
-        CbSecRest.Items.AddRange(New Object() {"0", "5", "10", "...", "55"})
+        CbSecRest.Items.AddRange(New Object() {"0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"})
         CbSecRest.Location = New Point(189, 56)
         CbSecRest.Name = "CbSecRest"
         CbSecRest.Size = New Size(62, 23)
         CbSecRest.TabIndex = 170
-        CbSecRest.Text = "30"
         ' 
         ' LbMinTitle
         ' 
@@ -247,7 +242,6 @@ Partial Class SetTimerForm
         CbSecLast.Name = "CbSecLast"
         CbSecLast.Size = New Size(62, 23)
         CbSecLast.TabIndex = 210
-        CbSecLast.Text = "10"
         ' 
         ' CbMinLast
         ' 
@@ -257,17 +251,15 @@ Partial Class SetTimerForm
         CbMinLast.Name = "CbMinLast"
         CbMinLast.Size = New Size(62, 23)
         CbMinLast.TabIndex = 200
-        CbMinLast.Text = "0"
         ' 
         ' CbHourLast
         ' 
         CbHourLast.FormattingEnabled = True
-        CbHourLast.Items.AddRange(New Object() {"01", "...", "24"})
+        CbHourLast.Items.AddRange(New Object() {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"})
         CbHourLast.Location = New Point(53, 85)
         CbHourLast.Name = "CbHourLast"
         CbHourLast.Size = New Size(62, 23)
         CbHourLast.TabIndex = 190
-        CbHourLast.Text = "0"
         ' 
         ' LbLast
         ' 
@@ -281,8 +273,6 @@ Partial Class SetTimerForm
         ' CbLastWork
         ' 
         CbLastWork.AutoSize = True
-        CbLastWork.Checked = True
-        CbLastWork.CheckState = CheckState.Checked
         CbLastWork.Location = New Point(257, 89)
         CbLastWork.Name = "CbLastWork"
         CbLastWork.Size = New Size(54, 19)
@@ -381,6 +371,7 @@ Partial Class SetTimerForm
         Controls.Add(CbHourWork)
         Controls.Add(LbRestTitle)
         Controls.Add(LbWorkTitle)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "SetTimerForm"
         Text = "Set Timer"
         ResumeLayout(False)

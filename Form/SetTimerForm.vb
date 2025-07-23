@@ -59,59 +59,78 @@ Partial Class SetTimerForm
         Me.KeyPreview = True
 
         ' 前回保存値の復元例（型が合わないと例外になるので要検証）
-        Me.CbHourWork.Text = registryClass.GetValue("HourWork", CInt(Me.CbHourWork.Text)).ToString()
-        Me.CbMinWork.Text = registryClass.GetValue("MinWork", CInt(Me.CbMinWork.Text)).ToString()
-        Me.CbSecWork.Text = registryClass.GetValue("SecWork", CInt(Me.CbSecWork.Text)).ToString()
+        Call Me.SetRegistry()
 
         Call start()
     End Sub
 
     Private Sub SetRegistry()
         Try
-            If registryClass.ExistsValue(REGISTRY_HOUR_WORK) Then
+
+            ' Work 時間（タイマー停止時のみ読み込み）
+            If registryClass.ExistsValue(REGISTRY_HOUR_WORK) And Me.TimerAll.Enabled = False Then
                 CbHourWork.Text = registryClass.GetValue(REGISTRY_HOUR_WORK, 0).ToString()
+            Else
+                CbHourWork.Text = "0"
             End If
 
-            If registryClass.ExistsValue(REGISTRY_MIN_WORK) Then
+            If registryClass.ExistsValue(REGISTRY_MIN_WORK) And Me.TimerAll.Enabled = False Then
                 CbMinWork.Text = registryClass.GetValue(REGISTRY_MIN_WORK, 0).ToString()
+            Else
+                CbMinWork.Text = "0"
             End If
 
-            If registryClass.ExistsValue(REGISTRY_SEC_WORK) Then
+            If registryClass.ExistsValue(REGISTRY_SEC_WORK) And Me.TimerAll.Enabled = False Then
                 CbSecWork.Text = registryClass.GetValue(REGISTRY_SEC_WORK, 0).ToString()
+            Else
+                CbSecWork.Text = "0"
             End If
 
 
 
-
-            If registryClass.ExistsValue(REGISTRY_HOUR_REST) Then
+            ' Rest 時間（タイマー停止時のみ読み込み）
+            If registryClass.ExistsValue(REGISTRY_HOUR_REST) And Me.TimerAll.Enabled = False Then
                 CbHourRest.Text = registryClass.GetValue(REGISTRY_HOUR_REST, 0).ToString()
+            Else
+                CbHourRest.Text = "0"
             End If
 
-            If registryClass.ExistsValue(REGISTRY_MIN_REST) Then
+            If registryClass.ExistsValue(REGISTRY_MIN_REST) And Me.TimerAll.Enabled = False Then
                 CbMinRest.Text = registryClass.GetValue(REGISTRY_MIN_REST, 0).ToString()
+            Else
+                CbMinRest.Text = "0"
             End If
 
-            If registryClass.ExistsValue(REGISTRY_SEC_REST) Then
+            If registryClass.ExistsValue(REGISTRY_SEC_REST) And Me.TimerAll.Enabled = False Then
                 CbSecRest.Text = registryClass.GetValue(REGISTRY_SEC_REST, 0).ToString()
+            Else
+                CbSecRest.Text = "0"
             End If
 
 
 
-
-            If registryClass.ExistsValue(REGISTRY_HOUR_LAST) Then
+            ' Last 時間（タイマー停止時のみ読み込み）
+            If registryClass.ExistsValue(REGISTRY_HOUR_LAST) And Me.TimerAll.Enabled = False Then
                 CbHourLast.Text = registryClass.GetValue(REGISTRY_HOUR_LAST, 0).ToString()
+            Else
+                CbHourLast.Text = "0"
             End If
 
-            If registryClass.ExistsValue(REGISTRY_MIN_LAST) Then
+            If registryClass.ExistsValue(REGISTRY_MIN_LAST) And Me.TimerAll.Enabled = False Then
                 CbMinLast.Text = registryClass.GetValue(REGISTRY_MIN_LAST, 0).ToString()
+            Else
+                CbMinLast.Text = "0"
             End If
 
-            If registryClass.ExistsValue(REGISTRY_SEC_LAST) Then
+            If registryClass.ExistsValue(REGISTRY_SEC_LAST) And Me.TimerAll.Enabled = False Then
                 CbSecLast.Text = registryClass.GetValue(REGISTRY_SEC_LAST, 0).ToString()
+            Else
+                CbSecLast.Text = "0"
             End If
 
 
 
+            ' チェックボックス（タイマー状態に関係なく読み込み）
             If registryClass.ExistsValue(REGISTRY_CHECK_WORK) Then
                 CbLastWork.Checked = registryClass.GetValue(REGISTRY_CHECK_WORK, False)
             End If
@@ -122,7 +141,7 @@ Partial Class SetTimerForm
 
 
 
-
+            ' WAVパス（タイマー状態に関係なく読み込み）
             If registryClass.ExistsValue(REGISTRY_WAV_PATH_WORK) Then
                 LbWavPathWork.Text = registryClass.GetValue(REGISTRY_WAV_PATH_WORK, "C:\Windows\Media\chimes.wav")
             End If
@@ -134,7 +153,6 @@ Partial Class SetTimerForm
             If registryClass.ExistsValue(REGISTRY_WAV_PATH_LAST) Then
                 LbWavPathLast.Text = registryClass.GetValue(REGISTRY_WAV_PATH_LAST, "C:\Windows\Media\chimes.wav")
             End If
-
 
         Catch ex As Exception
             Debug.WriteLine("SetRegistry例外: " & ex.Message)
@@ -331,48 +349,100 @@ Partial Class SetTimerForm
 
 
     ' 値変更でレジストリ保存
+    ' Work 時間（タイマー停止時のみ保存）
     Private Sub CbHourWork_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbHourWork.SelectedIndexChanged
-        registryClass.SaveValue(REGISTRY_HOUR_WORK, CInt(CbHourWork.Text))
+        Try
+            If Me.TimerAll.Enabled = False Then
+                registryClass.SaveValue(REGISTRY_HOUR_WORK, CInt(CbHourWork.Text))
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex.Message)
+        End Try
     End Sub
 
     Private Sub CbMinWork_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbMinWork.SelectedIndexChanged
-        registryClass.SaveValue(REGISTRY_MIN_WORK, CInt(CbMinWork.Text))
+        Try
+            If Me.TimerAll.Enabled = False Then
+                registryClass.SaveValue(REGISTRY_MIN_WORK, CInt(CbMinWork.Text))
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex.Message)
+        End Try
     End Sub
 
     Private Sub CbSecWork_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbSecWork.SelectedIndexChanged
-        registryClass.SaveValue(REGISTRY_SEC_WORK, CInt(CbSecWork.Text))
+        Try
+            If Me.TimerAll.Enabled = False Then
+                registryClass.SaveValue(REGISTRY_SEC_WORK, CInt(CbSecWork.Text))
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex.Message)
+        End Try
     End Sub
 
-
-
+    ' Rest 時間（タイマー停止時のみ保存）
     Private Sub CbHourRest_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbHourRest.SelectedIndexChanged
-        registryClass.SaveValue(REGISTRY_HOUR_REST, CInt(CbHourRest.Text))
+        Try
+            If Me.TimerAll.Enabled = False Then
+                registryClass.SaveValue(REGISTRY_HOUR_REST, CInt(CbHourRest.Text))
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex.Message)
+        End Try
     End Sub
 
     Private Sub CbMinRest_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbMinRest.SelectedIndexChanged
-        registryClass.SaveValue(REGISTRY_MIN_REST, CInt(CbMinRest.Text))
+        Try
+            If Me.TimerAll.Enabled = False Then
+                registryClass.SaveValue(REGISTRY_MIN_REST, CInt(CbMinRest.Text))
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex.Message)
+        End Try
     End Sub
 
     Private Sub CbSecRest_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbSecRest.SelectedIndexChanged
-        registryClass.SaveValue(REGISTRY_SEC_REST, CInt(CbSecRest.Text))
+        Try
+            If Me.TimerAll.Enabled = False Then
+                registryClass.SaveValue(REGISTRY_SEC_REST, CInt(CbSecRest.Text))
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex.Message)
+        End Try
     End Sub
 
-
-
+    ' Last 時間（タイマー停止時のみ保存）
     Private Sub CbHourLast_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbHourLast.SelectedIndexChanged
-        registryClass.SaveValue(REGISTRY_HOUR_LAST, CInt(CbHourLast.Text))
+        Try
+            If Me.TimerAll.Enabled = False Then
+                registryClass.SaveValue(REGISTRY_HOUR_LAST, CInt(CbHourLast.Text))
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex.Message)
+        End Try
     End Sub
 
     Private Sub CbMinLast_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbMinLast.SelectedIndexChanged
-        registryClass.SaveValue(REGISTRY_MIN_LAST, CInt(CbMinLast.Text))
+        Try
+            If Me.TimerAll.Enabled = False Then
+                registryClass.SaveValue(REGISTRY_MIN_LAST, CInt(CbMinLast.Text))
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex.Message)
+        End Try
     End Sub
 
     Private Sub CbSecLast_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbSecLast.SelectedIndexChanged
-        registryClass.SaveValue(REGISTRY_SEC_LAST, CInt(CbSecLast.Text))
+        Try
+            If Me.TimerAll.Enabled = False Then
+                registryClass.SaveValue(REGISTRY_SEC_LAST, CInt(CbSecLast.Text))
+            End If
+        Catch ex As Exception
+            Debug.WriteLine(ex.Message)
+        End Try
     End Sub
 
-
-
+    ' チェックボックス（タイマー状態に関係なく保存）
     Private Sub CbLastWork_CheckedChanged(sender As Object, e As EventArgs) Handles CbLastWork.CheckedChanged
         registryClass.SaveValue(REGISTRY_CHECK_WORK, CbLastWork.Checked)
     End Sub
@@ -380,7 +450,6 @@ Partial Class SetTimerForm
     Private Sub CbLastRest_CheckedChanged(sender As Object, e As EventArgs) Handles CbLastRest.CheckedChanged
         registryClass.SaveValue(REGISTRY_CHECK_REST, CbLastRest.Checked)
     End Sub
-
 
 
 

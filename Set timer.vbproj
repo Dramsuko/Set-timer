@@ -7,6 +7,7 @@
     <StartupObject>Sub Main</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
+    <PackageIcon>android-chrome-512x512.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,6 +33,13 @@
 
   <ItemGroup>
     <Folder Include="Module\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\metal\OneDrive\デスクトップ\tempWork\favicon_io\android-chrome-512x512.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 	<ItemGroup>
