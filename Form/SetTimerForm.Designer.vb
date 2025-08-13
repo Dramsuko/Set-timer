@@ -59,6 +59,9 @@ Partial Class SetTimerForm
         OpenFileDialog2 = New OpenFileDialog()
         OpenFileDialogWork = New OpenFileDialog()
         OpenFileDialogRest = New OpenFileDialog()
+        CbTestWork = New Button()
+        CbTestRest = New Button()
+        CbTestLast = New Button()
         SuspendLayout()
         ' 
         ' LbWorkTitle
@@ -209,7 +212,7 @@ Partial Class SetTimerForm
         ' LbWavPathWork
         ' 
         LbWavPathWork.AutoSize = True
-        LbWavPathWork.Location = New Point(383, 31)
+        LbWavPathWork.Location = New Point(470, 30)
         LbWavPathWork.Name = "LbWavPathWork"
         LbWavPathWork.Size = New Size(184, 15)
         LbWavPathWork.TabIndex = 16
@@ -218,7 +221,7 @@ Partial Class SetTimerForm
         ' LbWavPathRest
         ' 
         LbWavPathRest.AutoSize = True
-        LbWavPathRest.Location = New Point(383, 60)
+        LbWavPathRest.Location = New Point(470, 59)
         LbWavPathRest.Name = "LbWavPathRest"
         LbWavPathRest.Size = New Size(184, 15)
         LbWavPathRest.TabIndex = 17
@@ -295,14 +298,14 @@ Partial Class SetTimerForm
         CbSelectWavLast.Location = New Point(371, 86)
         CbSelectWavLast.Name = "CbSelectWavLast"
         CbSelectWavLast.Size = New Size(120, 23)
-        CbSelectWavLast.TabIndex = 231
+        CbSelectWavLast.TabIndex = 233
         CbSelectWavLast.Text = "Select wav(last)"
         CbSelectWavLast.UseVisualStyleBackColor = True
         ' 
         ' LbWavPathLast
         ' 
         LbWavPathLast.AutoSize = True
-        LbWavPathLast.Location = New Point(497, 92)
+        LbWavPathLast.Location = New Point(584, 90)
         LbWavPathLast.Name = "LbWavPathLast"
         LbWavPathLast.Size = New Size(255, 15)
         LbWavPathLast.TabIndex = 262
@@ -339,11 +342,41 @@ Partial Class SetTimerForm
         ' 
         OpenFileDialogRest.FileName = "OpenFileDialog3"
         ' 
+        ' CbTestWork
+        ' 
+        CbTestWork.Location = New Point(383, 27)
+        CbTestWork.Name = "CbTestWork"
+        CbTestWork.Size = New Size(81, 23)
+        CbTestWork.TabIndex = 145
+        CbTestWork.Text = "Test(Work)"
+        CbTestWork.UseVisualStyleBackColor = True
+        ' 
+        ' CbTestRest
+        ' 
+        CbTestRest.Location = New Point(383, 55)
+        CbTestRest.Name = "CbTestRest"
+        CbTestRest.Size = New Size(81, 23)
+        CbTestRest.TabIndex = 185
+        CbTestRest.Text = "Test(Rest)"
+        CbTestRest.UseVisualStyleBackColor = True
+        ' 
+        ' CbTestLast
+        ' 
+        CbTestLast.Location = New Point(497, 86)
+        CbTestLast.Name = "CbTestLast"
+        CbTestLast.Size = New Size(81, 23)
+        CbTestLast.TabIndex = 237
+        CbTestLast.Text = "Test(Last)"
+        CbTestLast.UseVisualStyleBackColor = True
+        ' 
         ' SetTimerForm
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(795, 148)
+        ClientSize = New Size(883, 148)
+        Controls.Add(CbTestLast)
+        Controls.Add(CbTestRest)
+        Controls.Add(CbTestWork)
         Controls.Add(CbPause)
         Controls.Add(LbWavPathLast)
         Controls.Add(CbSelectWavLast)
@@ -413,4 +446,7 @@ Partial Class SetTimerForm
     Friend WithEvents OpenFileDialog2 As OpenFileDialog
     Friend WithEvents OpenFileDialogWork As OpenFileDialog
     Friend WithEvents OpenFileDialogRest As OpenFileDialog
+    Friend WithEvents CbTestWork As Button
+    Friend WithEvents CbTestRest As Button
+    Friend WithEvents CbTestLast As Button
 End Class

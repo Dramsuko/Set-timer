@@ -463,6 +463,21 @@ Partial Class SetTimerForm
         registryClass.SaveValue(REGISTRY_CHECK_REST, CbLastRest.Checked)
     End Sub
 
+    Private Sub CbTestWork_Click(sender As Object, e As EventArgs) Handles CbTestWork.Click
 
+        My.Computer.Audio.Play(LbWavPathWork.Text, AudioPlayMode.WaitToComplete)
 
+    End Sub
+
+    Private Sub CbTestRest_Click(sender As Object, e As EventArgs) Handles CbTestRest.Click
+
+        My.Computer.Audio.Play(LbWavPathRest.Text, AudioPlayMode.WaitToComplete)
+
+    End Sub
+
+    Private Sub CbTestLast_Click(sender As Object, e As EventArgs) Handles CbTestLast.Click
+
+        My.Computer.Audio.Play(LbWavPathLast.Text, AudioPlayMode.WaitToComplete)
+
+    End Sub
 End Class
