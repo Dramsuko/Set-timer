@@ -508,14 +508,6 @@ Partial Class SetTimerForm
         End Try
     End Sub
 
-    ' チェックボックス（タイマー状態に関係なく保存）
-    Private Sub CbLastWork_CheckedChanged(sender As Object, e As EventArgs) Handles CbLastWork.CheckedChanged
-        registryClass.SaveValue(REGISTRY_CHECK_WORK, CbLastWork.Checked)
-    End Sub
-
-    Private Sub CbLastRest_CheckedChanged(sender As Object, e As EventArgs) Handles CbLastRest.CheckedChanged
-        registryClass.SaveValue(REGISTRY_CHECK_REST, CbLastRest.Checked)
-    End Sub
 
     Private Sub CbTestWork_Click(sender As Object, e As EventArgs) Handles CbTestWork.Click
 
@@ -535,27 +527,37 @@ Partial Class SetTimerForm
 
     End Sub
 
-    Private Sub CbSoundWork_CheckedChanged(sender As Object, e As EventArgs) Handles CbSoundWork.CheckedChanged
+    Private Sub CbSoundWork_Click(sender As Object, e As EventArgs) Handles CbSoundWork.Click
         registryClass.SaveValue(REGISTRY_SOUND_FLAG_WORK, CbSoundWork.Checked)
     End Sub
 
-    Private Sub CbSoundRest_CheckedChanged(sender As Object, e As EventArgs) Handles CbSoundRest.CheckedChanged
-        registryClass.SaveValue(REGISTRY_SOUND_FLAG_REST, CbSoundRest.Checked)
-    End Sub
-
-    Private Sub CbSoundLast_CheckedChanged(sender As Object, e As EventArgs) Handles CbSoundLast.CheckedChanged
+    Private Sub CbSoundLast_Click(sender As Object, e As EventArgs) Handles CbSoundLast.Click
         registryClass.SaveValue(REGISTRY_SOUND_FLAG_LAST, CbSoundLast.Checked)
     End Sub
 
-    Private Sub CbMsgBoxWork_CheckedChanged(sender As Object, e As EventArgs) Handles CbMsgBoxWork.CheckedChanged
+    Private Sub CbSoundRest_Click(sender As Object, e As EventArgs) Handles CbSoundRest.Click
+        registryClass.SaveValue(REGISTRY_SOUND_FLAG_REST, CbSoundRest.Checked)
+    End Sub
+
+    Private Sub CbMsgBoxWork_Click(sender As Object, e As EventArgs) Handles CbMsgBoxWork.Click
         registryClass.SaveValue(REGISTRY_MSGBOX_FLAG_WORK, CbMsgBoxWork.Checked)
     End Sub
 
-    Private Sub CbMsgBoxRest_CheckedChanged(sender As Object, e As EventArgs) Handles CbMsgBoxRest.CheckedChanged
+    Private Sub CbMsgBoxRest_Click(sender As Object, e As EventArgs) Handles CbMsgBoxRest.Click
         registryClass.SaveValue(REGISTRY_MSGBOX_FLAG_REST, CbMsgBoxRest.Checked)
     End Sub
 
-    Private Sub CbMsgBoxLast_CheckedChanged(sender As Object, e As EventArgs) Handles CbMsgBoxLast.CheckedChanged
+    Private Sub CbMsgBoxLast_Click(sender As Object, e As EventArgs) Handles CbMsgBoxLast.Click
         registryClass.SaveValue(REGISTRY_MSGBOX_FLAG_LAST, CbMsgBoxLast.Checked)
     End Sub
+
+    ' チェックボックス（タイマー状態に関係なく保存）
+    Private Sub CbLastWork_Click(sender As Object, e As EventArgs) Handles CbLastWork.Click
+        registryClass.SaveValue(REGISTRY_CHECK_WORK, CbLastWork.Checked)
+    End Sub
+
+    Private Sub CbLastRest_Click(sender As Object, e As EventArgs) Handles CbLastRest.CheckedChanged
+        registryClass.SaveValue(REGISTRY_CHECK_REST, CbLastRest.Checked)
+    End Sub
+
 End Class
