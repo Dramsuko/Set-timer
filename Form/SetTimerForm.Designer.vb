@@ -62,6 +62,14 @@ Partial Class SetTimerForm
         CbTestWork = New Button()
         CbTestRest = New Button()
         CbTestLast = New Button()
+        LbSoundTitle = New Label()
+        LbMsgBoxTitle = New Label()
+        CbSoundWork = New CheckBox()
+        CbMsgBoxWork = New CheckBox()
+        CbSoundRest = New CheckBox()
+        CbMsgBoxRest = New CheckBox()
+        CbSoundLast = New CheckBox()
+        CbMsgBoxLast = New CheckBox()
         SuspendLayout()
         ' 
         ' LbWorkTitle
@@ -212,7 +220,7 @@ Partial Class SetTimerForm
         ' LbWavPathWork
         ' 
         LbWavPathWork.AutoSize = True
-        LbWavPathWork.Location = New Point(470, 30)
+        LbWavPathWork.Location = New Point(683, 31)
         LbWavPathWork.Name = "LbWavPathWork"
         LbWavPathWork.Size = New Size(184, 15)
         LbWavPathWork.TabIndex = 16
@@ -221,7 +229,7 @@ Partial Class SetTimerForm
         ' LbWavPathRest
         ' 
         LbWavPathRest.AutoSize = True
-        LbWavPathRest.Location = New Point(470, 59)
+        LbWavPathRest.Location = New Point(683, 59)
         LbWavPathRest.Name = "LbWavPathRest"
         LbWavPathRest.Size = New Size(184, 15)
         LbWavPathRest.TabIndex = 17
@@ -305,7 +313,7 @@ Partial Class SetTimerForm
         ' LbWavPathLast
         ' 
         LbWavPathLast.AutoSize = True
-        LbWavPathLast.Location = New Point(584, 90)
+        LbWavPathLast.Location = New Point(683, 89)
         LbWavPathLast.Name = "LbWavPathLast"
         LbWavPathLast.Size = New Size(255, 15)
         LbWavPathLast.TabIndex = 262
@@ -369,11 +377,97 @@ Partial Class SetTimerForm
         CbTestLast.Text = "Test(Last)"
         CbTestLast.UseVisualStyleBackColor = True
         ' 
+        ' LbSoundTitle
+        ' 
+        LbSoundTitle.AutoSize = True
+        LbSoundTitle.Location = New Point(583, 9)
+        LbSoundTitle.Name = "LbSoundTitle"
+        LbSoundTitle.Size = New Size(41, 15)
+        LbSoundTitle.TabIndex = 271
+        LbSoundTitle.Text = "Sound"
+        ' 
+        ' LbMsgBoxTitle
+        ' 
+        LbMsgBoxTitle.AutoSize = True
+        LbMsgBoxTitle.Location = New Point(630, 9)
+        LbMsgBoxTitle.Name = "LbMsgBoxTitle"
+        LbMsgBoxTitle.Size = New Size(50, 15)
+        LbMsgBoxTitle.TabIndex = 272
+        LbMsgBoxTitle.Text = "MsgBox"
+        ' 
+        ' CbSoundWork
+        ' 
+        CbSoundWork.AutoSize = True
+        CbSoundWork.Checked = True
+        CbSoundWork.CheckState = CheckState.Checked
+        CbSoundWork.Location = New Point(596, 31)
+        CbSoundWork.Name = "CbSoundWork"
+        CbSoundWork.Size = New Size(15, 14)
+        CbSoundWork.TabIndex = 147
+        CbSoundWork.UseVisualStyleBackColor = True
+        ' 
+        ' CbMsgBoxWork
+        ' 
+        CbMsgBoxWork.AutoSize = True
+        CbMsgBoxWork.Location = New Point(646, 32)
+        CbMsgBoxWork.Name = "CbMsgBoxWork"
+        CbMsgBoxWork.Size = New Size(15, 14)
+        CbMsgBoxWork.TabIndex = 148
+        CbMsgBoxWork.UseVisualStyleBackColor = True
+        ' 
+        ' CbSoundRest
+        ' 
+        CbSoundRest.AutoSize = True
+        CbSoundRest.Checked = True
+        CbSoundRest.CheckState = CheckState.Checked
+        CbSoundRest.Location = New Point(596, 61)
+        CbSoundRest.Name = "CbSoundRest"
+        CbSoundRest.Size = New Size(15, 14)
+        CbSoundRest.TabIndex = 187
+        CbSoundRest.UseVisualStyleBackColor = True
+        ' 
+        ' CbMsgBoxRest
+        ' 
+        CbMsgBoxRest.AutoSize = True
+        CbMsgBoxRest.Location = New Point(646, 61)
+        CbMsgBoxRest.Name = "CbMsgBoxRest"
+        CbMsgBoxRest.Size = New Size(15, 14)
+        CbMsgBoxRest.TabIndex = 188
+        CbMsgBoxRest.UseVisualStyleBackColor = True
+        ' 
+        ' CbSoundLast
+        ' 
+        CbSoundLast.AutoSize = True
+        CbSoundLast.Checked = True
+        CbSoundLast.CheckState = CheckState.Checked
+        CbSoundLast.Location = New Point(596, 91)
+        CbSoundLast.Name = "CbSoundLast"
+        CbSoundLast.Size = New Size(15, 14)
+        CbSoundLast.TabIndex = 238
+        CbSoundLast.UseVisualStyleBackColor = True
+        ' 
+        ' CbMsgBoxLast
+        ' 
+        CbMsgBoxLast.AutoSize = True
+        CbMsgBoxLast.Location = New Point(646, 90)
+        CbMsgBoxLast.Name = "CbMsgBoxLast"
+        CbMsgBoxLast.Size = New Size(15, 14)
+        CbMsgBoxLast.TabIndex = 239
+        CbMsgBoxLast.UseVisualStyleBackColor = True
+        ' 
         ' SetTimerForm
         ' 
         AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(883, 148)
+        ClientSize = New Size(984, 148)
+        Controls.Add(CbMsgBoxLast)
+        Controls.Add(CbSoundLast)
+        Controls.Add(CbMsgBoxRest)
+        Controls.Add(CbSoundRest)
+        Controls.Add(CbMsgBoxWork)
+        Controls.Add(CbSoundWork)
+        Controls.Add(LbMsgBoxTitle)
+        Controls.Add(LbSoundTitle)
         Controls.Add(CbTestLast)
         Controls.Add(CbTestRest)
         Controls.Add(CbTestWork)
@@ -449,4 +543,12 @@ Partial Class SetTimerForm
     Friend WithEvents CbTestWork As Button
     Friend WithEvents CbTestRest As Button
     Friend WithEvents CbTestLast As Button
+    Friend WithEvents LbSoundTitle As Label
+    Friend WithEvents LbMsgBoxTitle As Label
+    Friend WithEvents CbSoundWork As CheckBox
+    Friend WithEvents CbMsgBoxWork As CheckBox
+    Friend WithEvents CbSoundRest As CheckBox
+    Friend WithEvents CbMsgBoxRest As CheckBox
+    Friend WithEvents CbSoundLast As CheckBox
+    Friend WithEvents CbMsgBoxLast As CheckBox
 End Class

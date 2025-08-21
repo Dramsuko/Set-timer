@@ -52,6 +52,14 @@ Partial Class SetTimerForm
     Private Const REGISTRY_WAV_PATH_REST As String = "WavPathRest"
     Private Const REGISTRY_WAV_PATH_LAST As String = "WavPathLast"
 
+    Private Const REGISTRY_SOUND_FLAG_WORK As String = "SoundFlagWork"
+    Private Const REGISTRY_SOUND_FLAG_REST As String = "SoundFlagRest"
+    Private Const REGISTRY_SOUND_FLAG_LAST As String = "SoundFlagLast"
+
+    Private Const REGISTRY_MSGBOX_FLAG_WORK As String = "MsgBoxFlagWork"
+    Private Const REGISTRY_MSGBOX_FLAG_REST As String = "MsgBoxFlagRest"
+    Private Const REGISTRY_MSGBOX_FLAG_LAST As String = "MsgBoxFlagLast"
+
     '――― イベントハンドラ ―――
 
     ' フォームロード
@@ -154,6 +162,32 @@ Partial Class SetTimerForm
                 LbWavPathLast.Text = registryClass.GetValue(REGISTRY_WAV_PATH_LAST, "C:\Windows\Media\chimes.wav")
             End If
 
+            ' Sound チェックボックス（Work/Rest/Last）
+            If registryClass.ExistsValue(REGISTRY_SOUND_FLAG_WORK) Then
+                CbSoundWork.Checked = registryClass.GetValue(REGISTRY_SOUND_FLAG_WORK, True)
+            End If
+
+            If registryClass.ExistsValue(REGISTRY_SOUND_FLAG_REST) Then
+                CbSoundRest.Checked = registryClass.GetValue(REGISTRY_SOUND_FLAG_REST, True)
+            End If
+
+            If registryClass.ExistsValue(REGISTRY_SOUND_FLAG_LAST) Then
+                CbSoundLast.Checked = registryClass.GetValue(REGISTRY_SOUND_FLAG_LAST, True)
+            End If
+
+            ' MsgBox チェックボックス（Work/Rest/Last）
+            If registryClass.ExistsValue(REGISTRY_MSGBOX_FLAG_WORK) Then
+                CbMsgBoxWork.Checked = registryClass.GetValue(REGISTRY_MSGBOX_FLAG_WORK, False)
+            End If
+
+            If registryClass.ExistsValue(REGISTRY_MSGBOX_FLAG_REST) Then
+                CbMsgBoxRest.Checked = registryClass.GetValue(REGISTRY_MSGBOX_FLAG_REST, False)
+            End If
+
+            If registryClass.ExistsValue(REGISTRY_MSGBOX_FLAG_LAST) Then
+                CbMsgBoxLast.Checked = registryClass.GetValue(REGISTRY_MSGBOX_FLAG_LAST, False)
+            End If
+
         Catch ex As Exception
             Debug.WriteLine("SetRegistry例外: " & ex.Message)
         End Try
@@ -207,11 +241,21 @@ Partial Class SetTimerForm
                 CbSecWork.Text = tsW.Seconds.ToString()
 
                 If remainingWorkSeconds = triggerSeconds AndAlso CbLastWork.Checked Then
-                    My.Computer.Audio.Play(LbWavPathLast.Text, AudioPlayMode.WaitToComplete)
+                    If CbSoundWork.Checked Then
+                        My.Computer.Audio.Play(LbWavPathWork.Text, AudioPlayMode.WaitToComplete)
+                    End If
+                    If CbMsgBoxWork.Checked Then
+                        MessageBox.Show("Work フェーズの残り時間が " & CbHourLast.Text & ":" & CbMinLast.Text & ":" & CbSecLast.Text & " です。", "Work Phase Alert", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    End If
                 End If
 
-                If remainingWorkSeconds <= 0 Then
-                    My.Computer.Audio.Play(LbWavPathWork.Text, AudioPlayMode.WaitToComplete)
+                If remainingWorkSeconds = 0 Then
+                    If CbSoundWork.Checked Then
+                        My.Computer.Audio.Play(LbWavPathRest.Text, AudioPlayMode.WaitToComplete)
+                    End If
+                    If CbMsgBoxWork.Checked Then
+                        MessageBox.Show("Work フェーズが終了しました。", "Work Phase Finished", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    End If
                     isWorkPhase = False
                     remainingWorkSeconds = initialWorkSeconds
                     remainingRestSeconds = initialRestSeconds
@@ -231,11 +275,21 @@ Partial Class SetTimerForm
                 CbSecRest.Text = tsR.Seconds.ToString()
 
                 If remainingRestSeconds = triggerSeconds AndAlso CbLastRest.Checked Then
-                    My.Computer.Audio.Play(LbWavPathLast.Text, AudioPlayMode.WaitToComplete)
+                    If CbSoundRest.Checked Then
+                        My.Computer.Audio.Play(LbWavPathRest.Text, AudioPlayMode.WaitToComplete)
+                    End If
+                    If CbMsgBoxRest.Checked Then
+                        MessageBox.Show("Rest フェーズの残り時間が " & CbHourLast.Text & ":" & CbMinLast.Text & ":" & CbSecLast.Text & " です。", "Rest Phase Alert", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    End If
                 End If
 
-                If remainingRestSeconds <= 0 Then
-                    My.Computer.Audio.Play(LbWavPathRest.Text, AudioPlayMode.WaitToComplete)
+                If remainingRestSeconds = 0 Then
+                    If CbSoundRest.Checked Then
+                        My.Computer.Audio.Play(LbWavPathLast.Text, AudioPlayMode.WaitToComplete)
+                    End If
+                    If CbMsgBoxRest.Checked Then
+                        MessageBox.Show("Rest フェーズが終了しました。", "Rest Phase Finished", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    End If
                     isWorkPhase = True
                     remainingWorkSeconds = initialWorkSeconds
                     remainingRestSeconds = initialRestSeconds
@@ -479,5 +533,29 @@ Partial Class SetTimerForm
 
         My.Computer.Audio.Play(LbWavPathLast.Text, AudioPlayMode.WaitToComplete)
 
+    End Sub
+
+    Private Sub CbSoundWork_CheckedChanged(sender As Object, e As EventArgs) Handles CbSoundWork.CheckedChanged
+        registryClass.SaveValue(REGISTRY_SOUND_FLAG_WORK, CbSoundWork.Checked)
+    End Sub
+
+    Private Sub CbSoundRest_CheckedChanged(sender As Object, e As EventArgs) Handles CbSoundRest.CheckedChanged
+        registryClass.SaveValue(REGISTRY_SOUND_FLAG_REST, CbSoundRest.Checked)
+    End Sub
+
+    Private Sub CbSoundLast_CheckedChanged(sender As Object, e As EventArgs) Handles CbSoundLast.CheckedChanged
+        registryClass.SaveValue(REGISTRY_SOUND_FLAG_LAST, CbSoundLast.Checked)
+    End Sub
+
+    Private Sub CbMsgBoxWork_CheckedChanged(sender As Object, e As EventArgs) Handles CbMsgBoxWork.CheckedChanged
+        registryClass.SaveValue(REGISTRY_MSGBOX_FLAG_WORK, CbMsgBoxWork.Checked)
+    End Sub
+
+    Private Sub CbMsgBoxRest_CheckedChanged(sender As Object, e As EventArgs) Handles CbMsgBoxRest.CheckedChanged
+        registryClass.SaveValue(REGISTRY_MSGBOX_FLAG_REST, CbMsgBoxRest.Checked)
+    End Sub
+
+    Private Sub CbMsgBoxLast_CheckedChanged(sender As Object, e As EventArgs) Handles CbMsgBoxLast.CheckedChanged
+        registryClass.SaveValue(REGISTRY_MSGBOX_FLAG_LAST, CbMsgBoxLast.Checked)
     End Sub
 End Class
